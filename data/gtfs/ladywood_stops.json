@@ -1,0 +1,1348 @@
+[
+  {
+    "stop_id": "43000300104",
+    "name": "Five Ways Station",
+    "lat": 52.471241,
+    "lng": -1.912463,
+    "routes": [
+      "80",
+      "8C"
+    ],
+    "n_routes": 2
+  },
+  {
+    "stop_id": "43000300203",
+    "name": "Frederick Rd",
+    "lat": 52.472404,
+    "lng": -1.91723,
+    "routes": [
+      "80",
+      "8C"
+    ],
+    "n_routes": 2
+  },
+  {
+    "stop_id": "43000300501",
+    "name": "Friston Ave",
+    "lat": 52.473793,
+    "lng": -1.92001,
+    "routes": [
+      "80",
+      "8C"
+    ],
+    "n_routes": 2
+  },
+  {
+    "stop_id": "43000300502",
+    "name": "Friston Ave",
+    "lat": 52.473919,
+    "lng": -1.919627,
+    "routes": [
+      "80",
+      "8A"
+    ],
+    "n_routes": 2
+  },
+  {
+    "stop_id": "43000288101",
+    "name": "Leyburn Rd",
+    "lat": 52.475681,
+    "lng": -1.923967,
+    "routes": [
+      "80",
+      "8C"
+    ],
+    "n_routes": 2
+  },
+  {
+    "stop_id": "43000288102",
+    "name": "Leyburn Rd",
+    "lat": 52.475567,
+    "lng": -1.923069,
+    "routes": [
+      "80",
+      "8A"
+    ],
+    "n_routes": 2
+  },
+  {
+    "stop_id": "43000262004",
+    "name": "Alma Street North",
+    "lat": 52.499271,
+    "lng": -1.896955,
+    "routes": [
+      "8C"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000262006",
+    "name": "Alma Street North",
+    "lat": 52.4991,
+    "lng": -1.897295,
+    "routes": [
+      "8A"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000215502",
+    "name": "Arena Birmingham",
+    "lat": 52.480396,
+    "lng": -1.9138,
+    "routes": [
+      "126"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000205601",
+    "name": "Art Gallery",
+    "lat": 52.480946,
+    "lng": -1.902873,
+    "routes": [
+      "126"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43002702501",
+    "name": "Barr Street",
+    "lat": 52.494438,
+    "lng": -1.912299,
+    "routes": [
+      "8C"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43002702502",
+    "name": "Barr Street",
+    "lat": 52.494526,
+    "lng": -1.912078,
+    "routes": [
+      "8A"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000212301",
+    "name": "Barrow Walk",
+    "lat": 52.466202,
+    "lng": -1.89612,
+    "routes": [
+      "8A"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000212302",
+    "name": "Barrow Walk",
+    "lat": 52.465988,
+    "lng": -1.896944,
+    "routes": [
+      "8C"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000956001",
+    "name": "Beech Way",
+    "lat": 52.493122,
+    "lng": -1.957797,
+    "routes": [
+      "80"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000213501",
+    "name": "Belgrave Interchange",
+    "lat": 52.46661,
+    "lng": -1.899313,
+    "routes": [
+      "8C"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000213502",
+    "name": "Belgrave Interchange",
+    "lat": 52.466953,
+    "lng": -1.898929,
+    "routes": [
+      "8A"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000217601",
+    "name": "Belgrave Village",
+    "lat": 52.463673,
+    "lng": -1.889149,
+    "routes": [
+      "8C"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000217602",
+    "name": "Belgrave Village",
+    "lat": 52.464066,
+    "lng": -1.889221,
+    "routes": [
+      "8A"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000214301",
+    "name": "Bexhill Grove",
+    "lat": 52.472698,
+    "lng": -1.910502,
+    "routes": [
+      "80"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000214302",
+    "name": "Bexhill Grove",
+    "lat": 52.472706,
+    "lng": -1.908544,
+    "routes": [
+      "80"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43002154001",
+    "name": "Brindley Drive",
+    "lat": 52.480446,
+    "lng": -1.907674,
+    "routes": [
+      "126"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000272401",
+    "name": "Burbury St",
+    "lat": 52.499298,
+    "lng": -1.908327,
+    "routes": [
+      "8C"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000949901",
+    "name": "Bush Ave",
+    "lat": 52.493938,
+    "lng": -1.955823,
+    "routes": [
+      "80"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000949902",
+    "name": "Bush Ave",
+    "lat": 52.493938,
+    "lng": -1.956294,
+    "routes": [
+      "80"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000282901",
+    "name": "Carver St",
+    "lat": 52.486977,
+    "lng": -1.916864,
+    "routes": [
+      "8C"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000282902",
+    "name": "Carver St",
+    "lat": 52.486897,
+    "lng": -1.916629,
+    "routes": [
+      "8A"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000283501",
+    "name": "Chamberlain Clock",
+    "lat": 52.487011,
+    "lng": -1.912933,
+    "routes": [
+      "8A"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000283502",
+    "name": "Chamberlain Clock",
+    "lat": 52.48711,
+    "lng": -1.913153,
+    "routes": [
+      "8C"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000286101",
+    "name": "Charlotte St",
+    "lat": 52.481838,
+    "lng": -1.909659,
+    "routes": [
+      "126"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43002890001",
+    "name": "City Rd Med Centre",
+    "lat": 52.48613,
+    "lng": -1.940943,
+    "routes": [
+      "80"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000276801",
+    "name": "Clement St",
+    "lat": 52.480309,
+    "lng": -1.915994,
+    "routes": [
+      "126"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000276802",
+    "name": "Clement St",
+    "lat": 52.480423,
+    "lng": -1.916141,
+    "routes": [
+      "126"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000206202",
+    "name": "Colmore Row",
+    "lat": 52.481697,
+    "lng": -1.899058,
+    "routes": [
+      "126"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000286401",
+    "name": "Cope St",
+    "lat": 52.482632,
+    "lng": -1.922571,
+    "routes": [
+      "8A"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000286402",
+    "name": "Cope St",
+    "lat": 52.48283,
+    "lng": -1.922924,
+    "routes": [
+      "8C"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43001331501",
+    "name": "Crescent Theatre",
+    "lat": 52.477242,
+    "lng": -1.915587,
+    "routes": [
+      "126"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000288901",
+    "name": "Dudley Rd",
+    "lat": 52.485992,
+    "lng": -1.936761,
+    "routes": [
+      "80"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000288902",
+    "name": "Dudley Rd",
+    "lat": 52.485722,
+    "lng": -1.936805,
+    "routes": [
+      "80"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000300702",
+    "name": "Edgbaston Vlg Metro",
+    "lat": 52.47205,
+    "lng": -1.923929,
+    "routes": [
+      "126"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000300704",
+    "name": "Edgbaston Vlg Metro",
+    "lat": 52.472256,
+    "lng": -1.923237,
+    "routes": [
+      "126"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000214101",
+    "name": "Ernest St",
+    "lat": 52.473995,
+    "lng": -1.902623,
+    "routes": [
+      "80"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000214102",
+    "name": "Ernest St",
+    "lat": 52.474014,
+    "lng": -1.902874,
+    "routes": [
+      "80"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000215301",
+    "name": "Five Ways (West Midlands Metro)",
+    "lat": 52.475487,
+    "lng": -1.914001,
+    "routes": [
+      "126"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000215303",
+    "name": "Five Ways (West Midlands Metro)",
+    "lat": 52.475674,
+    "lng": -1.913573,
+    "routes": [
+      "126"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000300105",
+    "name": "Five Ways Station",
+    "lat": 52.470936,
+    "lng": -1.910977,
+    "routes": [
+      "8A"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43003003003",
+    "name": "Five Ways Station",
+    "lat": 52.472332,
+    "lng": -1.912667,
+    "routes": [
+      "80"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000304101",
+    "name": "Fountain Rd",
+    "lat": 52.473297,
+    "lng": -1.956462,
+    "routes": [
+      "126"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000304103",
+    "name": "Fountain Rd",
+    "lat": 52.473019,
+    "lng": -1.95552,
+    "routes": [
+      "126"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000300201",
+    "name": "Frederick Rd",
+    "lat": 52.47253,
+    "lng": -1.916818,
+    "routes": [
+      "80"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000300202",
+    "name": "Frederick Rd",
+    "lat": 52.472504,
+    "lng": -1.916627,
+    "routes": [
+      "8A"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43003001502",
+    "name": "George Dixon Academy",
+    "lat": 52.479069,
+    "lng": -1.953629,
+    "routes": [
+      "80"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000288802",
+    "name": "Gillott Rd",
+    "lat": 52.483574,
+    "lng": -1.935233,
+    "routes": [
+      "80"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000288803",
+    "name": "Gillott Rd",
+    "lat": 52.484184,
+    "lng": -1.935821,
+    "routes": [
+      "80"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000302501",
+    "name": "Gillott Rd",
+    "lat": 52.472866,
+    "lng": -1.9534,
+    "routes": [
+      "126"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000302502",
+    "name": "Gillott Rd",
+    "lat": 52.472496,
+    "lng": -1.952149,
+    "routes": [
+      "126"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000214201",
+    "name": "Granville St",
+    "lat": 52.472893,
+    "lng": -1.906232,
+    "routes": [
+      "80"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000214202",
+    "name": "Granville St",
+    "lat": 52.473072,
+    "lng": -1.905761,
+    "routes": [
+      "80"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000215602",
+    "name": "Grosvenor St West",
+    "lat": 52.476757,
+    "lng": -1.915264,
+    "routes": [
+      "126"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43002720002",
+    "name": "Gunmakers Walk",
+    "lat": 52.500275,
+    "lng": -1.903567,
+    "routes": [
+      "8C"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000272203",
+    "name": "HML Campus",
+    "lat": 52.499813,
+    "lng": -1.903273,
+    "routes": [
+      "8A"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000288301",
+    "name": "Icknield Port Rd",
+    "lat": 52.478733,
+    "lng": -1.926892,
+    "routes": [
+      "8C"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000288302",
+    "name": "Icknield Port Rd",
+    "lat": 52.478622,
+    "lng": -1.926436,
+    "routes": [
+      "8A"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43002830501",
+    "name": "Jewellery Quarter Station",
+    "lat": 52.489529,
+    "lng": -1.912707,
+    "routes": [
+      "8C"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43002830502",
+    "name": "Jewellery Quarter Station",
+    "lat": 52.48978,
+    "lng": -1.912559,
+    "routes": [
+      "8A"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000282802",
+    "name": "King Edwards Rd",
+    "lat": 52.484032,
+    "lng": -1.920713,
+    "routes": [
+      "8A"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000282803",
+    "name": "King Edwards Rd",
+    "lat": 52.484402,
+    "lng": -1.920757,
+    "routes": [
+      "8C"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43002802503",
+    "name": "Ladywood Fire Station",
+    "lat": 52.478203,
+    "lng": -1.927747,
+    "routes": [
+      "80"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43002802504",
+    "name": "Ladywood Fire Station",
+    "lat": 52.47784,
+    "lng": -1.927453,
+    "routes": [
+      "80"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000213701",
+    "name": "Lee Crescent",
+    "lat": 52.468891,
+    "lng": -1.907433,
+    "routes": [
+      "8C"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000213702",
+    "name": "Lee Crescent",
+    "lat": 52.469593,
+    "lng": -1.908109,
+    "routes": [
+      "8A"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000207202",
+    "name": "Lloyd House",
+    "lat": 52.484158,
+    "lng": -1.89811,
+    "routes": [
+      "126"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000216101",
+    "name": "Longmore St",
+    "lat": 52.464672,
+    "lng": -1.891369,
+    "routes": [
+      "8A"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000216103",
+    "name": "Longmore St",
+    "lat": 52.46505,
+    "lng": -1.893517,
+    "routes": [
+      "8C"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000272302",
+    "name": "Lozells St",
+    "lat": 52.499657,
+    "lng": -1.906883,
+    "routes": [
+      "8A"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000302301",
+    "name": "Manor Rd",
+    "lat": 52.471874,
+    "lng": -1.947572,
+    "routes": [
+      "126"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000302302",
+    "name": "Manor Rd",
+    "lat": 52.471596,
+    "lng": -1.946247,
+    "routes": [
+      "126"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000203902",
+    "name": "Markets",
+    "lat": 52.476028,
+    "lng": -1.893373,
+    "routes": [
+      "80"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000948901",
+    "name": "Mencap Centre",
+    "lat": 52.493015,
+    "lng": -1.959108,
+    "routes": [
+      "80"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000201704",
+    "name": "New St Station",
+    "lat": 52.477558,
+    "lng": -1.89624,
+    "routes": [
+      "80"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000205201",
+    "name": "Newhall St",
+    "lat": 52.482052,
+    "lng": -1.904166,
+    "routes": [
+      "126"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000205207",
+    "name": "Newhall St",
+    "lat": 52.48127,
+    "lng": -1.904816,
+    "routes": [
+      "126"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000202603",
+    "name": "Old Repertory Theatre",
+    "lat": 52.476974,
+    "lng": -1.898156,
+    "routes": [
+      "80"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000288501",
+    "name": "Osler St",
+    "lat": 52.479805,
+    "lng": -1.929938,
+    "routes": [
+      "80"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000288502",
+    "name": "Osler St",
+    "lat": 52.480282,
+    "lng": -1.930776,
+    "routes": [
+      "80"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43003003501",
+    "name": "Plough & Harrow Hotel",
+    "lat": 52.471962,
+    "lng": -1.925946,
+    "routes": [
+      "126"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43003003503",
+    "name": "Plough & Harrow Hotel",
+    "lat": 52.47216,
+    "lng": -1.925107,
+    "routes": [
+      "126"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000302101",
+    "name": "Portland Rd",
+    "lat": 52.472042,
+    "lng": -1.937767,
+    "routes": [
+      "126"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000302102",
+    "name": "Portland Rd",
+    "lat": 52.471931,
+    "lng": -1.93734,
+    "routes": [
+      "126"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000207102",
+    "name": "Railway Bridge",
+    "lat": 52.483929,
+    "lng": -1.901806,
+    "routes": [
+      "126"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000303201",
+    "name": "Ravenshaw Rd",
+    "lat": 52.480721,
+    "lng": -1.950594,
+    "routes": [
+      "80"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000303202",
+    "name": "Ravenshaw Rd",
+    "lat": 52.480156,
+    "lng": -1.951478,
+    "routes": [
+      "80"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000303501",
+    "name": "Ridgeway",
+    "lat": 52.480564,
+    "lng": -1.957103,
+    "routes": [
+      "80"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000303502",
+    "name": "Ridgeway",
+    "lat": 52.480984,
+    "lng": -1.957367,
+    "routes": [
+      "80"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000289601",
+    "name": "Rotton Park Rd",
+    "lat": 52.48243,
+    "lng": -1.947265,
+    "routes": [
+      "80"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000289602",
+    "name": "Rotton Park Rd",
+    "lat": 52.483112,
+    "lng": -1.946351,
+    "routes": [
+      "80"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000302201",
+    "name": "Rotton Park Rd",
+    "lat": 52.47171,
+    "lng": -1.944157,
+    "routes": [
+      "126"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000302202",
+    "name": "Rotton Park Rd",
+    "lat": 52.471638,
+    "lng": -1.941728,
+    "routes": [
+      "126"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000215701",
+    "name": "Roundhouse",
+    "lat": 52.479176,
+    "lng": -1.917704,
+    "routes": [
+      "126"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000215702",
+    "name": "Roundhouse",
+    "lat": 52.479057,
+    "lng": -1.917807,
+    "routes": [
+      "126"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000303701",
+    "name": "Selsey Rd",
+    "lat": 52.482803,
+    "lng": -1.95872,
+    "routes": [
+      "80"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000303702",
+    "name": "Selsey Rd",
+    "lat": 52.482864,
+    "lng": -1.958911,
+    "routes": [
+      "80"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000262401",
+    "name": "Selston Rd",
+    "lat": 52.499554,
+    "lng": -1.892992,
+    "routes": [
+      "8C"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000262402",
+    "name": "Selston Rd",
+    "lat": 52.499527,
+    "lng": -1.894023,
+    "routes": [
+      "8A"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000289501",
+    "name": "Selwyn Rd",
+    "lat": 52.484074,
+    "lng": -1.94448,
+    "routes": [
+      "80"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000289502",
+    "name": "Selwyn Rd",
+    "lat": 52.48436,
+    "lng": -1.943787,
+    "routes": [
+      "80"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000289701",
+    "name": "Shenstone Rd",
+    "lat": 52.481335,
+    "lng": -1.949313,
+    "routes": [
+      "80"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000289702",
+    "name": "Shenstone Rd",
+    "lat": 52.481514,
+    "lng": -1.949121,
+    "routes": [
+      "80"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000303605",
+    "name": "Smethwick Market",
+    "lat": 52.48774,
+    "lng": -1.959231,
+    "routes": [
+      "80"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000303606",
+    "name": "Smethwick Market",
+    "lat": 52.487961,
+    "lng": -1.959025,
+    "routes": [
+      "80"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000276201",
+    "name": "Soho Hill",
+    "lat": 52.496418,
+    "lng": -1.915182,
+    "routes": [
+      "8C"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000276202",
+    "name": "Soho Hill",
+    "lat": 52.496273,
+    "lng": -1.91502,
+    "routes": [
+      "8A"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000213601",
+    "name": "Spring St",
+    "lat": 52.467766,
+    "lng": -1.902784,
+    "routes": [
+      "8A"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000213602",
+    "name": "Spring St",
+    "lat": 52.467575,
+    "lng": -1.90408,
+    "routes": [
+      "8C"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000303304",
+    "name": "St Germain's Church",
+    "lat": 52.478729,
+    "lng": -1.954837,
+    "routes": [
+      "80"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000948401",
+    "name": "St Matthew's School",
+    "lat": 52.490902,
+    "lng": -1.957755,
+    "routes": [
+      "80"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000948402",
+    "name": "St Matthew's School",
+    "lat": 52.491173,
+    "lng": -1.957254,
+    "routes": [
+      "80"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000288701",
+    "name": "Summerfield Crescent",
+    "lat": 52.482864,
+    "lng": -1.934071,
+    "routes": [
+      "80"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000288702",
+    "name": "Summerfield Crescent",
+    "lat": 52.482845,
+    "lng": -1.934218,
+    "routes": [
+      "80"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000289302",
+    "name": "Summerfield Park",
+    "lat": 52.48645,
+    "lng": -1.938336,
+    "routes": [
+      "80"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000289304",
+    "name": "Summerfield Park",
+    "lat": 52.486561,
+    "lng": -1.938601,
+    "routes": [
+      "80"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000301102",
+    "name": "The Ivy Bush",
+    "lat": 52.471939,
+    "lng": -1.930289,
+    "routes": [
+      "126"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000301105",
+    "name": "The Ivy Bush",
+    "lat": 52.471767,
+    "lng": -1.932659,
+    "routes": [
+      "126"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43001326701",
+    "name": "Townsend Way",
+    "lat": 52.481518,
+    "lng": -1.914136,
+    "routes": [
+      "126"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43002702003",
+    "name": "Unett St",
+    "lat": 52.492725,
+    "lng": -1.909077,
+    "routes": [
+      "8A"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43002702004",
+    "name": "Unett St",
+    "lat": 52.492851,
+    "lng": -1.909151,
+    "routes": [
+      "8C"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000253502",
+    "name": "Upper Sutton St",
+    "lat": 52.498901,
+    "lng": -1.888855,
+    "routes": [
+      "8C"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000272501",
+    "name": "Villa Street",
+    "lat": 52.498138,
+    "lng": -1.911202,
+    "routes": [
+      "8A"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000272502",
+    "name": "Villa Street",
+    "lat": 52.49807,
+    "lng": -1.911865,
+    "routes": [
+      "8C"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000302401",
+    "name": "Westfield Rd",
+    "lat": 52.472092,
+    "lng": -1.949677,
+    "routes": [
+      "126"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000288601",
+    "name": "Wiggin St",
+    "lat": 52.481926,
+    "lng": -1.932821,
+    "routes": [
+      "80"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000288602",
+    "name": "Wiggin St",
+    "lat": 52.482224,
+    "lng": -1.933394,
+    "routes": [
+      "80"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000948501",
+    "name": "Windmill Crescent",
+    "lat": 52.493263,
+    "lng": -1.955146,
+    "routes": [
+      "80"
+    ],
+    "n_routes": 1
+  },
+  {
+    "stop_id": "43000948502",
+    "name": "Windmill Crescent",
+    "lat": 52.493263,
+    "lng": -1.95491,
+    "routes": [
+      "80"
+    ],
+    "n_routes": 1
+  }
+]
