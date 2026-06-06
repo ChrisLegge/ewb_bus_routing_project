@@ -1,0 +1,49 @@
+# ─── Secrets ───────────────────────────────────────────────
+.env
+.env.local
+.env.*.local
+*.key
+secrets.json
+
+# ─── Python ────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+
+# ─── Node / Vite ───────────────────────────────────────────
+node_modules/
+dist/
+dist-ssr/
+.vite/
+*.local
+
+# ─── Data artefacts (regenerable) ──────────────────────────
+# Large GTFS downloads — fetched via scripts, not committed
+data/gtfs/*.zip
+data/gtfs/raw/
+
+# Trained model + generated demand dataset. Regenerate with:
+#   python "prediction model/generate_map_dataset.py"
+#   python "prediction model/demand_route_optimizer.py"
+*.pkl
+map_demand_dataset.csv
+data/synthetic/map_demand_dataset.csv
+
+# ─── OS / Editor / Tooling ─────────────────────────────────
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+.claude/
+mono_crash.*.json
+
+# ─── Unity (generated) ─────────────────────────────────────
+simulation/Library/
+simulation/Temp/
+simulation/Obj/
+simulation/Logs/
+simulation/UserSettings/
