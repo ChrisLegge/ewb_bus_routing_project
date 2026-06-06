@@ -1,0 +1,92 @@
+{
+  "S01": {
+    "stop_name": "New Street Station",
+    "lsoa": "E01013761",
+    "population_2015": 1985.0,
+    "note": "population denominator from IMD 2019 File 7 (mid-2015 estimate)"
+  },
+  "S02": {
+    "stop_name": "Spring St",
+    "lsoa": "E01009099",
+    "population_2015": 1834.0,
+    "note": "population denominator from IMD 2019 File 7 (mid-2015 estimate)"
+  },
+  "S03": {
+    "stop_name": "Jewellery Quarter Station",
+    "lsoa": "E01009158",
+    "population_2015": 1956.0,
+    "note": "population denominator from IMD 2019 File 7 (mid-2015 estimate)"
+  },
+  "S04": {
+    "stop_name": "Soho Hill",
+    "lsoa": "E01009146",
+    "population_2015": 2484.0,
+    "note": "population denominator from IMD 2019 File 7 (mid-2015 estimate)"
+  },
+  "S05": {
+    "stop_name": "Five Ways (Metro)",
+    "lsoa": "E01009057",
+    "population_2015": 2113.0,
+    "note": "population denominator from IMD 2019 File 7 (mid-2015 estimate)"
+  },
+  "S06": {
+    "stop_name": "Dudley Rd",
+    "lsoa": "E01009129",
+    "population_2015": 1662.0,
+    "note": "population denominator from IMD 2019 File 7 (mid-2015 estimate)"
+  },
+  "S07": {
+    "stop_name": "Five Ways Station",
+    "lsoa": "E01009111",
+    "population_2015": 1510.0,
+    "note": "population denominator from IMD 2019 File 7 (mid-2015 estimate)"
+  },
+  "S08": {
+    "stop_name": "Icknield Port Rd",
+    "lsoa": "E01009127",
+    "population_2015": 1600.0,
+    "note": "population denominator from IMD 2019 File 7 (mid-2015 estimate)"
+  },
+  "S09": {
+    "stop_name": "Belgrave Interchange",
+    "lsoa": "E01009097",
+    "population_2015": 2021.0,
+    "note": "population denominator from IMD 2019 File 7 (mid-2015 estimate)"
+  },
+  "S10": {
+    "stop_name": "Ladywood Fire Station",
+    "lsoa": "E01009133",
+    "population_2015": 1513.0,
+    "note": "population denominator from IMD 2019 File 7 (mid-2015 estimate)"
+  },
+  "S11": {
+    "stop_name": "Edgbaston Village Metro",
+    "lsoa": "E01009063",
+    "population_2015": null,
+    "note": "population denominator from IMD 2019 File 7 (mid-2015 estimate)"
+  },
+  "S12": {
+    "stop_name": "Summerfield Park",
+    "lsoa": "E01009119",
+    "population_2015": 1451.0,
+    "note": "population denominator from IMD 2019 File 7 (mid-2015 estimate)"
+  },
+  "S13": {
+    "stop_name": "City Rd Medical Centre",
+    "lsoa": "E01009121",
+    "population_2015": 2373.0,
+    "note": "population denominator from IMD 2019 File 7 (mid-2015 estimate)"
+  },
+  "S14": {
+    "stop_name": "Mencap Centre",
+    "lsoa": "E01013524",
+    "population_2015": 2430.0,
+    "note": "population denominator from IMD 2019 File 7 (mid-2015 estimate)"
+  },
+  "S15": {
+    "stop_name": "Summerfield Crescent",
+    "lsoa": "E01009117",
+    "population_2015": 2251.0,
+    "note": "population denominator from IMD 2019 File 7 (mid-2015 estimate)"
+  }
+}

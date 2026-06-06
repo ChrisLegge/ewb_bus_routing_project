@@ -1,0 +1,107 @@
+{
+  "S01": {
+    "stop_name": "New Street Station",
+    "lat": 52.4778,
+    "lon": -1.899,
+    "elevation_m": 129.0,
+    "data_source": "Open-Meteo Elevation API (SRTM 90m)"
+  },
+  "S02": {
+    "stop_name": "Spring St",
+    "lat": 52.4868,
+    "lon": -1.9101,
+    "elevation_m": 143.0,
+    "data_source": "Open-Meteo Elevation API (SRTM 90m)"
+  },
+  "S03": {
+    "stop_name": "Jewellery Quarter Station",
+    "lat": 52.4868,
+    "lon": -1.9101,
+    "elevation_m": 143.0,
+    "data_source": "Open-Meteo Elevation API (SRTM 90m)"
+  },
+  "S04": {
+    "stop_name": "Soho Hill",
+    "lat": 52.5012,
+    "lon": -1.9178,
+    "elevation_m": 133.0,
+    "data_source": "Open-Meteo Elevation API (SRTM 90m)"
+  },
+  "S05": {
+    "stop_name": "Five Ways (Metro)",
+    "lat": 52.4737,
+    "lon": -1.9102,
+    "elevation_m": 146.0,
+    "data_source": "Open-Meteo Elevation API (SRTM 90m)"
+  },
+  "S06": {
+    "stop_name": "Dudley Rd",
+    "lat": 52.4887,
+    "lon": -1.9302,
+    "elevation_m": 145.0,
+    "data_source": "Open-Meteo Elevation API (SRTM 90m)"
+  },
+  "S07": {
+    "stop_name": "Five Ways Station",
+    "lat": 52.4737,
+    "lon": -1.9102,
+    "elevation_m": 146.0,
+    "data_source": "Open-Meteo Elevation API (SRTM 90m)"
+  },
+  "S08": {
+    "stop_name": "Icknield Port Rd",
+    "lat": 52.4914,
+    "lon": -1.9267,
+    "elevation_m": 139.0,
+    "data_source": "Open-Meteo Elevation API (SRTM 90m)"
+  },
+  "S09": {
+    "stop_name": "Belgrave Interchange",
+    "lat": 52.482,
+    "lon": -1.896,
+    "elevation_m": 139.0,
+    "data_source": "Open-Meteo Elevation API (SRTM 90m)"
+  },
+  "S10": {
+    "stop_name": "Ladywood Fire Station",
+    "lat": 52.482,
+    "lon": -1.92,
+    "elevation_m": 135.0,
+    "data_source": "Open-Meteo Elevation API (SRTM 90m)"
+  },
+  "S11": {
+    "stop_name": "Edgbaston Village Metro",
+    "lat": 52.468,
+    "lon": -1.917,
+    "elevation_m": 149.0,
+    "data_source": "Open-Meteo Elevation API (SRTM 90m)"
+  },
+  "S12": {
+    "stop_name": "Summerfield Park",
+    "lat": 52.494,
+    "lon": -1.92,
+    "elevation_m": 123.0,
+    "data_source": "Open-Meteo Elevation API (SRTM 90m)"
+  },
+  "S13": {
+    "stop_name": "City Rd Medical Centre",
+    "lat": 52.488,
+    "lon": -1.935,
+    "elevation_m": 147.0,
+    "data_source": "Open-Meteo Elevation API (SRTM 90m)"
+  },
+  "S14": {
+    "stop_name": "Mencap Centre",
+    "lat": 52.502,
+    "lon": -1.943,
+    "elevation_m": 148.0,
+    "data_source": "Open-Meteo Elevation API (SRTM 90m)"
+  },
+  "S15": {
+    "stop_name": "Summerfield Crescent",
+    "lat": 52.493,
+    "lon": -1.923,
+    "elevation_m": 133.0,
+    "data_source": "Open-Meteo Elevation API (SRTM 90m)"
+  }
+}
