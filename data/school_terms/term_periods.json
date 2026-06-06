@@ -1,0 +1,212 @@
+[
+  {
+    "name": "autumn_2023",
+    "type": "term",
+    "start": "2023-09-04",
+    "end": "2023-10-20"
+  },
+  {
+    "name": "half_term_oct_23",
+    "type": "holiday",
+    "start": "2023-10-23",
+    "end": "2023-10-27"
+  },
+  {
+    "name": "autumn_2023b",
+    "type": "term",
+    "start": "2023-10-30",
+    "end": "2023-12-20"
+  },
+  {
+    "name": "xmas_2023",
+    "type": "holiday",
+    "start": "2023-12-21",
+    "end": "2024-01-05"
+  },
+  {
+    "name": "spring_2024a",
+    "type": "term",
+    "start": "2024-01-08",
+    "end": "2024-02-09"
+  },
+  {
+    "name": "half_term_feb_24",
+    "type": "holiday",
+    "start": "2024-02-12",
+    "end": "2024-02-16"
+  },
+  {
+    "name": "spring_2024b",
+    "type": "term",
+    "start": "2024-02-19",
+    "end": "2024-03-28"
+  },
+  {
+    "name": "easter_2024",
+    "type": "holiday",
+    "start": "2024-03-29",
+    "end": "2024-04-12"
+  },
+  {
+    "name": "summer_2024a",
+    "type": "term",
+    "start": "2024-04-15",
+    "end": "2024-05-24"
+  },
+  {
+    "name": "half_term_may_24",
+    "type": "holiday",
+    "start": "2024-05-27",
+    "end": "2024-05-31"
+  },
+  {
+    "name": "summer_2024b",
+    "type": "term",
+    "start": "2024-06-03",
+    "end": "2024-07-19"
+  },
+  {
+    "name": "summer_hols_2024",
+    "type": "holiday",
+    "start": "2024-07-22",
+    "end": "2024-09-01"
+  },
+  {
+    "name": "autumn_2024",
+    "type": "term",
+    "start": "2024-09-02",
+    "end": "2024-10-25"
+  },
+  {
+    "name": "half_term_oct_24",
+    "type": "holiday",
+    "start": "2024-10-28",
+    "end": "2024-11-01"
+  },
+  {
+    "name": "autumn_2024b",
+    "type": "term",
+    "start": "2024-11-04",
+    "end": "2024-12-20"
+  },
+  {
+    "name": "xmas_2024",
+    "type": "holiday",
+    "start": "2024-12-21",
+    "end": "2025-01-05"
+  },
+  {
+    "name": "spring_2025a",
+    "type": "term",
+    "start": "2025-01-06",
+    "end": "2025-02-14"
+  },
+  {
+    "name": "half_term_feb_25",
+    "type": "holiday",
+    "start": "2025-02-17",
+    "end": "2025-02-21"
+  },
+  {
+    "name": "spring_2025b",
+    "type": "term",
+    "start": "2025-02-24",
+    "end": "2025-04-11"
+  },
+  {
+    "name": "easter_2025",
+    "type": "holiday",
+    "start": "2025-04-12",
+    "end": "2025-04-25"
+  },
+  {
+    "name": "summer_2025a",
+    "type": "term",
+    "start": "2025-04-28",
+    "end": "2025-05-23"
+  },
+  {
+    "name": "half_term_may_25",
+    "type": "holiday",
+    "start": "2025-05-26",
+    "end": "2025-05-30"
+  },
+  {
+    "name": "summer_2025b",
+    "type": "term",
+    "start": "2025-06-02",
+    "end": "2025-07-24"
+  },
+  {
+    "name": "summer_hols_2025",
+    "type": "holiday",
+    "start": "2025-07-25",
+    "end": "2025-08-31"
+  },
+  {
+    "name": "autumn_2025",
+    "type": "term",
+    "start": "2025-09-01",
+    "end": "2025-10-24"
+  },
+  {
+    "name": "half_term_oct_25",
+    "type": "holiday",
+    "start": "2025-10-27",
+    "end": "2025-10-31"
+  },
+  {
+    "name": "autumn_2025b",
+    "type": "term",
+    "start": "2025-11-03",
+    "end": "2025-12-19"
+  },
+  {
+    "name": "xmas_2025",
+    "type": "holiday",
+    "start": "2025-12-20",
+    "end": "2026-01-04"
+  },
+  {
+    "name": "spring_2026a",
+    "type": "term",
+    "start": "2026-01-05",
+    "end": "2026-02-13"
+  },
+  {
+    "name": "half_term_feb_26",
+    "type": "holiday",
+    "start": "2026-02-16",
+    "end": "2026-02-20"
+  },
+  {
+    "name": "spring_2026b",
+    "type": "term",
+    "start": "2026-02-23",
+    "end": "2026-03-27"
+  },
+  {
+    "name": "easter_2026",
+    "type": "holiday",
+    "start": "2026-03-28",
+    "end": "2026-04-12"
+  },
+  {
+    "name": "summer_2026a",
+    "type": "term",
+    "start": "2026-04-13",
+    "end": "2026-05-22"
+  },
+  {
+    "name": "half_term_may_26",
+    "type": "holiday",
+    "start": "2026-05-25",
+    "end": "2026-05-29"
+  },
+  {
+    "name": "summer_2026b",
+    "type": "term",
+    "start": "2026-06-01",
+    "end": "2026-07-20"
+  }
+]
