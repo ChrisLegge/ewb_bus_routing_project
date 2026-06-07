@@ -223,10 +223,10 @@
 
 /* Scenario comparison panel */
 .compare-panel {
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: min(520px, calc(100vw - 360px));
+  top: 92px;
+  left: 256px;
+  width: min(420px, calc(100vw - 620px));
+  min-width: 320px;
   padding: 16px 22px;
   display: flex;
   flex-direction: column;
