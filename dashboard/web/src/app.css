@@ -119,6 +119,27 @@
   cursor: pointer;
 }
 
+.unserved-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 11.5px;
+  color: rgba(255, 159, 10, 0.92);
+  background: rgba(255, 159, 10, 0.08);
+  border: 1px solid rgba(255, 159, 10, 0.22);
+  border-radius: 10px;
+  padding: 7px 12px;
+  line-height: 1.4;
+}
+
+.unserved-icon {
+  flex-shrink: 0;
+}
+
+.unserved-text {
+  color: rgba(245, 245, 247, 0.75);
+}
+
 .legend {
   display: flex;
   align-items: center;
@@ -432,6 +453,40 @@
   color: var(--text-dim);
   text-transform: uppercase;
   letter-spacing: 0.05em;
+}
+
+.glossary-toggle {
+  align-self: flex-start;
+  font-size: 11px;
+  font-family: inherit;
+  color: var(--accent);
+  background: none;
+  border: none;
+  padding: 0 0 14px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+.glossary-toggle:hover { color: #fff; }
+
+.glossary {
+  margin: 0 0 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.glossary-entry dt {
+  font-size: 11.5px;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.glossary-entry dd {
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--text-dim);
 }
 
 .panel-routes {

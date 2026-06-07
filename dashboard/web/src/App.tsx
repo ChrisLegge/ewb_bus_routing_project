@@ -168,6 +168,20 @@ function App() {
           onChange={(e) => setWindowIdx(Number(e.target.value))}
           className="time-slider"
         />
+        {currentPlan?.unserved_stops && currentPlan.unserved_stops.length > 0 && (
+          <div className="unserved-row">
+            <span className="unserved-icon">⚠</span>
+            <span className="unserved-text">
+              {currentPlan.unserved_stops.length} area{currentPlan.unserved_stops.length > 1 ? "s" : ""} left underserved this window —{" "}
+              {currentPlan.unserved_stops
+                .slice(0, 3)
+                .map((u) => `${u.stop} (${u.demand.toFixed(0)})`)
+                .join(", ")}
+              {currentPlan.unserved_stops.length > 3 ? ", …" : ""}
+            </span>
+          </div>
+        )}
+
         <div className="legend">
           {imdOverlay ? (
             <>
