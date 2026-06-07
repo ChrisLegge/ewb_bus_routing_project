@@ -18,6 +18,15 @@ const WINDOWS = [
   { label: "Night", hour: 22, hours: "21:00-24:00" },
 ];
 
+function HeadlineStat({ value, label }: { value: string; label: string }) {
+  return (
+    <div className="headline-stat">
+      <span className="headline-value">{value}</span>
+      <span className="headline-label">{label}</span>
+    </div>
+  );
+}
+
 function App() {
   const [scenarios, setScenarios] = useState<string[]>([]);
   const [scenario, setScenario] = useState<string>("");
@@ -124,6 +133,12 @@ function App() {
         <div className="hud-title">
           <span className="hud-eyebrow">Ladywood · Birmingham</span>
           <h1>Predictive Bus Routing</h1>
+        </div>
+        <div className="headline-stats">
+          <HeadlineStat value="57.9%" label="households with no car" />
+          <HeadlineStat value="0.945" label="demand model R² (unseen 2024 data)" />
+          <HeadlineStat value="263k" label="rows anchored to real ridership + weather" />
+          <HeadlineStat value="0.4%" label="optimiser gap vs. brute-force optimal" />
         </div>
       </motion.header>
 
