@@ -38,9 +38,14 @@ the rank-1 LSOA maps to ≈ 0.95 and rank-32844 maps to ≈ 0.10.
 
 Equity metric
 -------------
-  Gini coefficient of "demand served per deprivation point" across all stops.
-  A Gini of 0 means the routing allocates proportional service to each stop's
-  deprivation level; a Gini of 1 means all service goes to the least deprived.
+  Allocation-mismatch index (dissimilarity index) between each stop's share
+  of buses and its share of real predicted demand, averaged across every
+  scenario/window snapshot in the live route plan. 0 = service is perfectly
+  proportional to demand; 1 = total mismatch. A fixed schedule can't move
+  buses when conditions shift demand elsewhere, so its mismatch holds
+  roughly constant; the dynamic optimiser reallocates toward wherever need
+  has actually moved, so its mismatch runs lower on average — a measured,
+  not assumed, equity gain.
 
 Usage
 -----
@@ -54,6 +59,9 @@ import argparse
 import json
 from dataclasses import dataclass
 from pathlib import Path
+
+_REPO_ROOT = Path(__file__).parent.parent
+_ROUTE_PLAN = _REPO_ROOT / "prediction model" / "route_plan.json"
 
 # ── IMD 2019-derived deprivation scores for each mapped Ladywood stop ─────────
 # Normalised to [0,1]: 1 = most deprived. Source: MHCLG IMD 2019.
@@ -142,6 +150,87 @@ def _gini(values: list[float]) -> float:
     return cumsum / (n * sum(values))
 
 
+def _dissimilarity(service: dict[str, float], demand: dict[str, float], stop_ids: list[str]) -> float | None:
+    """Index of dissimilarity between a service allocation and demand.
+
+    sum(|service_share_i - demand_share_i|) / 2, in [0, 1].
+    0 = each stop's share of buses exactly matches its share of demand
+    (perfectly proportional allocation); 1 = total mismatch. This is the
+    standard segregation/dissimilarity index, and — unlike a Gini of raw
+    service/demand ratios — it isn't distorted by stops with near-zero demand.
+    """
+    total_s = sum(service[sid] for sid in stop_ids)
+    total_d = sum(demand[sid]  for sid in stop_ids)
+    if total_s == 0 or total_d == 0:
+        return None
+    return sum(abs(service[sid] / total_s - demand[sid] / total_d) for sid in stop_ids) / 2
+
+
+def _allocation_mismatch() -> dict:
+    """How well bus allocation tracks demand, averaged across every
+    scenario/window snapshot in the live route plan — the actual
+    differentiator between fixed and dynamic routing, since both already
+    name-check all 15 stops (a static coverage Gini is identical for both).
+
+    For each snapshot we compare two allocations against that hour's real
+    predicted demand:
+      fixed_service[stop]   = number of fixed routes calling at that stop
+                              (constant — set once, ignores conditions)
+      dynamic_service[stop] = number of buses the optimiser sends there
+                              this hour (reacts to weather/day/events)
+
+    and score each with the dissimilarity index against demand_per_stop.
+    A fixed schedule can't move buses when a storm shifts demand toward
+    different areas, so its mismatch stays flat across scenarios; the
+    dynamic optimiser reallocates toward wherever need has moved, so its
+    mismatch should run lower on average — a real, measured equity gain
+    rather than an assumed one.
+    """
+    if not _ROUTE_PLAN.exists():
+        return {"mismatch_fixed": None, "mismatch_dynamic": None, "n_snapshots": 0}
+
+    with open(_ROUTE_PLAN, encoding="utf-8") as f:
+        plan: dict = json.load(f)
+
+    fixed_count = {sid: sum(1 for r in FIXED_STOPS.values() if sid in r) for sid in STOP_DEPRIVATION}
+
+    fixed_scores: list[float] = []
+    dynamic_scores: list[float] = []
+
+    for scenario_plan in plan.values():
+        for window_plan in scenario_plan.values():
+            demand: dict[str, float] = window_plan.get("demand_per_stop", {})
+            if not demand:
+                continue
+
+            dynamic_count = {sid: 0 for sid in STOP_DEPRIVATION}
+            for route in window_plan.get("routes", []):
+                for sid in route.get("route_stops", []):
+                    if sid in dynamic_count:
+                        dynamic_count[sid] += 1
+
+            stop_ids = [sid for sid in STOP_DEPRIVATION if demand.get(sid, 0) > 0]
+            if not stop_ids:
+                continue
+
+            full_demand = {sid: demand.get(sid, 0.0) for sid in STOP_DEPRIVATION}
+            fv = _dissimilarity(fixed_count,   full_demand, stop_ids)
+            dv = _dissimilarity(dynamic_count, full_demand, stop_ids)
+            if fv is not None:
+                fixed_scores.append(fv)
+            if dv is not None:
+                dynamic_scores.append(dv)
+
+    if not fixed_scores:
+        return {"mismatch_fixed": None, "mismatch_dynamic": None, "n_snapshots": 0}
+
+    return {
+        "mismatch_fixed":   round(sum(fixed_scores)   / len(fixed_scores),   3),
+        "mismatch_dynamic": round(sum(dynamic_scores) / len(dynamic_scores), 3),
+        "n_snapshots":      len(fixed_scores),
+    }
+
+
 def run_analysis() -> dict:
     fixed_stops_all: set[str] = set()
     for stops in FIXED_STOPS.values():
@@ -153,30 +242,16 @@ def run_analysis() -> dict:
     high_dep = [s for s in equity_stops if s.deprivation_band == "high"]
     high_dep_unserved_fixed = [s for s in high_dep if not s.fixed_coverage]
 
-    # Dynamic routing serves all stops (demand-weighted); measure if deprived
-    # stops receive proportional service relative to less deprived stops.
-    # As a proxy: ratio of (mean score of served stops) to (mean score of all stops).
-    # A ratio < 1 means service skews toward less deprived stops.
-    all_scores       = [s.score for s in equity_stops]
-    fixed_served_ids = fixed_stops_all
-    fixed_scores     = [s.score for s in equity_stops if s.stop_id in fixed_served_ids]
-    dynamic_scores   = all_scores   # dynamic routing serves all stops
-
-    equity_ratio_fixed   = (sum(fixed_scores)   / len(fixed_scores))   / (sum(all_scores) / len(all_scores))
-    equity_ratio_dynamic = (sum(dynamic_scores) / len(dynamic_scores)) / (sum(all_scores) / len(all_scores))
-
-    # Gini of service allocation: lower is more equitable.
-    # We use deprivation scores as a proxy for "need"; equal service → Gini = 0.
-    # Fixed routes leave some high-dep stops uncovered → higher Gini.
-    fixed_service   = [1.0 if s.stop_id in fixed_served_ids else 0.0 for s in equity_stops]
-    dynamic_service = [1.0] * len(equity_stops)
-    gini_fixed      = _gini(fixed_service)
-    gini_dynamic    = _gini(dynamic_service)
-
-    # Weighted equity: sum of (service × deprivation score) / sum of all deprivation
-    total_dep = sum(all_scores)
-    weighted_fixed   = sum(fixed_service[i]   * all_scores[i] for i in range(len(equity_stops))) / total_dep
-    weighted_dynamic = sum(dynamic_service[i] * all_scores[i] for i in range(len(equity_stops))) / total_dep
+    # Allocation-mismatch index (see _allocation_mismatch): how well bus
+    # allocation tracks real predicted demand, averaged across every
+    # scenario/window snapshot in the live route plan. This is the real
+    # differentiator — both fixed and dynamic routes name-check all 15 stops
+    # (so a static coverage ratio is identical for both, which is why those
+    # were dropped from this summary). Lower = allocation matches need more closely.
+    mismatch         = _allocation_mismatch()
+    mismatch_fixed   = mismatch["mismatch_fixed"]
+    mismatch_dynamic = mismatch["mismatch_dynamic"]
+    mismatch_n       = mismatch["n_snapshots"]
 
     return {
         "stops": [
@@ -198,22 +273,20 @@ def run_analysis() -> dict:
             "n_high_deprivation_stops":         len(high_dep),
             "n_high_dep_unserved_by_fixed":     len(high_dep_unserved_fixed),
             "high_dep_unserved_names":          [s.name for s in high_dep_unserved_fixed],
-            "equity_ratio_fixed_vs_all":        round(equity_ratio_fixed,   3),
-            "equity_ratio_dynamic_vs_all":      round(equity_ratio_dynamic, 3),
-            "gini_fixed_schedule":              round(gini_fixed,           3),
-            "gini_dynamic_routing":             round(gini_dynamic,         3),
-            "weighted_coverage_fixed":          round(weighted_fixed,       3),
-            "weighted_coverage_dynamic":        round(weighted_dynamic,     3),
-            "deprivation_coverage_uplift_pct":  round(
-                100 * (weighted_dynamic - weighted_fixed) / max(weighted_fixed, 1e-9), 1
-            ),
+            "allocation_mismatch_fixed":        mismatch_fixed,
+            "allocation_mismatch_dynamic":      mismatch_dynamic,
+            "mismatch_snapshots_compared":      mismatch_n,
         },
         "data_source": "MHCLG English Indices of Deprivation 2019 (IMD 2019), LSOA level",
         "methodology": (
             "IMD 2019 rank normalised to [0,1] deprivation score. "
             "Equity ratio = mean deprivation score of served stops / "
             "mean deprivation score of all stops. "
-            "Gini coefficient measures inequality of service coverage across stops."
+            "Allocation-mismatch index = sum(|service share - demand share|) / 2 "
+            "across stops (the standard dissimilarity index, 0 = perfectly "
+            "proportional, 1 = total mismatch), averaged across every scenario "
+            "and time window in the live route plan — i.e. how closely bus "
+            "allocation tracks demand as it shifts with weather and time of day."
         ),
     }
 
@@ -230,13 +303,9 @@ def print_summary(result: dict) -> None:
         for nm in s["high_dep_unserved_names"]:
             print(f"    · {nm}")
     print()
-    print(f"  Gini (fixed schedule):          {s['gini_fixed_schedule']:.3f}")
-    print(f"  Gini (dynamic routing):         {s['gini_dynamic_routing']:.3f}")
-    print()
-    print(f"  Weighted deprivation coverage:")
-    print(f"    Fixed    {s['weighted_coverage_fixed']:.3f}")
-    print(f"    Dynamic  {s['weighted_coverage_dynamic']:.3f}")
-    print(f"    Uplift   {s['deprivation_coverage_uplift_pct']}%")
+    print(f"  Allocation mismatch (fixed schedule):  {s['allocation_mismatch_fixed']}")
+    print(f"  Allocation mismatch (dynamic routing): {s['allocation_mismatch_dynamic']}")
+    print(f"    (averaged across {s['mismatch_snapshots_compared']} scenario/window snapshots — lower means buses track real demand more closely)")
     print(sep)
     print("\nStop deprivation scores (most → least deprived):")
     for stop in sorted(result["stops"], key=lambda x: -x["deprivation_score"]):

@@ -83,9 +83,17 @@ and Framer Motion micro-interactions throughout.
 | Operating cost saving | ~£10k/yr (DfT BUS0404 methodology) |
 | Break-even | ~5.5 months |
 | Social value (DfT TAG) | ~£194k/yr passenger time savings |
-| Deprivation coverage uplift | +19.5% (IMD 2019 weighted) |
+| Allocation-mismatch index, fixed vs. dynamic | 0.385 → 0.374 (avg. across 32 scenario/window snapshots) |
 
 All figures are reproducible — see [Getting Started](#getting-started).
+
+<p align="center">
+  <img src="docs/figures/chart_robustness.png" width="58%" />
+  <img src="docs/figures/chart_equity.png" width="38%" />
+</p>
+<p align="center">
+  <em>Left: R² holds steady (0.937–0.949) across six independent validation checks — see <a href="#model-validation--robustness">Model Validation</a>. Right: the dynamic optimiser tracks real predicted demand more closely than a fixed schedule can, averaged across every scenario the model was run against — see <a href="#equity">Equity</a>.</em>
+</p>
 
 ---
 
@@ -125,7 +133,7 @@ This is also why the **headline R² changed from 0.949 (random 80/20 split) to 0
 
 ## Equity
 
-The system is designed explicitly around the people most dependent on it. Every stop is mapped to its IMD 2019 Lower Super Output Area deprivation score. The dashboard exposes a deprivation overlay — colour-coded by IMD band — and reports a Gini coefficient of service coverage.
+The system is designed explicitly around the people most dependent on it. Every stop is mapped to its IMD 2019 Lower Super Output Area deprivation score, and the dashboard exposes a one-click deprivation overlay (`analysis/equity.py`, full output: [`analysis/outputs/equity.json`](analysis/outputs/equity.json)).
 
 The highest-deprivation stops served:
 
@@ -135,7 +143,16 @@ The highest-deprivation stops served:
 | Ladywood Fire Station (S10) | 418 | 0.86 |
 | Summerfield Park (S12) | 520 | 0.82 |
 
-Dynamic routing serves all 15 stops on demand. The fixed timetable leaves several high-deprivation stops unserved outside peak hours.
+**Measuring the equity gain honestly.** Both the fixed timetable and the dynamic optimiser name-check all 15 stops, so a simple "is this stop served?" coverage statistic is identical for both — it would be a misleading headline. The real difference is *how closely bus allocation tracks real, shifting demand* — exactly what a fixed schedule structurally cannot do (a bus that runs at 08:00 runs at 08:00 whether twenty people are waiting or two, storm or shine).
+
+So `analysis/equity.py` computes an **allocation-mismatch index** — the standard dissimilarity index, `Σ|service share − demand share| / 2`, where 0 = each stop's share of buses exactly matches its share of predicted demand and 1 = total mismatch — for both the fixed schedule and the dynamic optimiser, against the model's real per-stop demand predictions, **averaged across all 32 scenario/window snapshots in the live route plan** (every weather condition × every time-of-day the system was run against):
+
+| Routing | Allocation-mismatch index | What it means |
+|---|---|---|
+| Fixed schedule | **0.385** | Same buses, same stops, regardless of how demand shifts with weather or time of day |
+| Dynamic optimiser | **0.374** | Reallocates toward wherever predicted need has actually moved this hour |
+
+A modest but real, *measured* gain — not an assumed one. (We initially tried a Gini coefficient of service-per-stop coverage here; it returned 0.0 for both routing types because the static coverage tables are identical, and a naive service÷demand ratio Gini was distorted by stops with near-zero predicted demand. The dissimilarity index above is the metric that actually isolates what changes between a fixed and an adaptive system — see the methodology note in [`equity.py`](analysis/equity.py) for the full reasoning.)
 
 ---
 
@@ -194,6 +211,47 @@ python analysis/robustness_analysis.py --json   # i.i.d., sensitivity, domain-sh
 ```bash
 pytest
 ```
+
+---
+
+## Methodology at a Glance
+
+A one-page map of what feeds the model and where every number in this README comes from:
+
+```
+┌─────────────────────────┐     ┌──────────────────────────┐     ┌────────────────────────┐
+│   REAL-WORLD INPUTS     │     │      DEMAND MODEL        │     │     ROUTE OPTIMISER    │
+│                         │     │                          │     │                        │
+│ • TfWM GTFS stops/roads │     │  XGBoost regressor       │     │  Capacitated VRP       │
+│ • Open-Meteo weather    │ ──▶ │  263k rows, 2023–24      │ ──▶ │  greedy + 2-opt        │
+│   (2023–24 hourly)      │     │  R² = 0.945 (temporal    │     │  0.4% gap vs. optimal  │
+│ • UCL/GEoDS smartcard   │     │  split, unseen 2024)     │     │  < 2s solve time       │
+│   journey volumes       │     │                          │     │                        │
+│ • Birmingham term dates │     │  predicts: boardings     │     │  outputs: per-scenario │
+│ • IMD 2019 / OSM POI /  │     │  per stop, per hour,     │     │  bus routes + real     │
+│   police.uk / elevation │     │  given conditions        │     │  road geometry         │
+│ • Census 2021           │     │                          │     │                        │
+└─────────────────────────┘     └──────────────────────────┘     └───────────┬────────────┘
+                                                                              │
+                      ┌────────────────────────────┬──────────────────────────┘
+                      ▼                            ▼
+        ┌──────────────────────────┐   ┌──────────────────────────┐
+        │     WEB DASHBOARD        │   │   FPGA LED MAP / UNITY   │
+        │ FastAPI + React/MapLibre │   │  physical, screen-free   │
+        │ live demand + routes +   │   │  community-facing        │
+        │ equity overlay + story   │   │  network display         │
+        └──────────────────────────┘   └──────────────────────────┘
+```
+
+Every number quoted in this README traces back to a script you can run yourself (see [Getting Started](#getting-started)):
+
+| Claim | Computed by | Output |
+|---|---|---|
+| R² = 0.945, robustness across 6 checks | `analysis/robustness_analysis.py` | [`robustness.json`](analysis/outputs/robustness.json) |
+| Allocation-mismatch 0.385 → 0.374 | `analysis/equity.py` | [`equity.json`](analysis/outputs/equity.json) |
+| Operating cost saving, break-even, social value | `analysis/cost_model.py` | DfT BUS0404 / TAG A1.3 methodology |
+| Synthetic vs. real GTFS pattern match | `analysis/gtfs_validate.py` | [`gtfs_validation.json`](analysis/outputs/gtfs_validation.json) |
+| Feature importance (what drives demand) | `analysis/explainability.py` | XGBoost permutation importance |
 
 ---
 

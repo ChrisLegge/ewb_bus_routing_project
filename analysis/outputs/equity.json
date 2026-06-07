@@ -1,0 +1,180 @@
+{
+  "stops": [
+    {
+      "stop_id": "S06",
+      "name": "Dudley Rd",
+      "deprivation_score": 0.88,
+      "imd_rank": 312,
+      "lsoa": "E01009129",
+      "deprivation_band": "high",
+      "fixed_coverage": true,
+      "postcode_area": "B18 7QF",
+      "notes": "Route 80; City Hospital corridor; flagged 'high deprivation' in GTFS display data"
+    },
+    {
+      "stop_id": "S10",
+      "name": "Ladywood Fire Station",
+      "deprivation_score": 0.86,
+      "imd_rank": 418,
+      "lsoa": "E01009133",
+      "deprivation_band": "high",
+      "fixed_coverage": true,
+      "postcode_area": "B16 8SP",
+      "notes": "57.9% of Ladywood Ward have no car (Census 2021); high transit dependency"
+    },
+    {
+      "stop_id": "S12",
+      "name": "Summerfield Park",
+      "deprivation_score": 0.82,
+      "imd_rank": 520,
+      "lsoa": "E01009119",
+      "deprivation_band": "high",
+      "fixed_coverage": true,
+      "postcode_area": "B18 5JS",
+      "notes": "Winson Green residential; route 80"
+    },
+    {
+      "stop_id": "S14",
+      "name": "Mencap Centre",
+      "deprivation_score": 0.8,
+      "imd_rank": 650,
+      "lsoa": "E01013524",
+      "deprivation_band": "high",
+      "fixed_coverage": true,
+      "postcode_area": "B67 5AT",
+      "notes": "Western boundary; accessibility demand; Mencap disability services"
+    },
+    {
+      "stop_id": "S13",
+      "name": "City Rd Medical Centre",
+      "deprivation_score": 0.78,
+      "imd_rank": 740,
+      "lsoa": "E01009121",
+      "deprivation_band": "high",
+      "fixed_coverage": true,
+      "postcode_area": "B17 8BA",
+      "notes": "Healthcare access stop; route 80; essential journey destination"
+    },
+    {
+      "stop_id": "S15",
+      "name": "Summerfield Crescent",
+      "deprivation_score": 0.76,
+      "imd_rank": 820,
+      "lsoa": "E01009117",
+      "deprivation_band": "high",
+      "fixed_coverage": true,
+      "postcode_area": "B18 4QD",
+      "notes": "Winson Green residential; route 80"
+    },
+    {
+      "stop_id": "S08",
+      "name": "Icknield Port Rd",
+      "deprivation_score": 0.74,
+      "imd_rank": 910,
+      "lsoa": "E01009127",
+      "deprivation_band": "high",
+      "fixed_coverage": true,
+      "postcode_area": "B16 0AA",
+      "notes": "Near CIVIC SQUARE Port Loop site; Inner Circle 8A/8C"
+    },
+    {
+      "stop_id": "S02",
+      "name": "Spring St",
+      "deprivation_score": 0.7,
+      "imd_rank": 1100,
+      "lsoa": "E01009099",
+      "deprivation_band": "high",
+      "fixed_coverage": true,
+      "postcode_area": "B12 0LS",
+      "notes": "Southern Inner Circle; Belgrave area; outbound AM"
+    },
+    {
+      "stop_id": "S04",
+      "name": "Soho Hill",
+      "deprivation_score": 0.66,
+      "imd_rank": 1300,
+      "lsoa": "E01009146",
+      "deprivation_band": "medium",
+      "fixed_coverage": true,
+      "postcode_area": "B21 9SH",
+      "notes": "Northern Ladywood / Handsworth edge; high bus dependency"
+    },
+    {
+      "stop_id": "S09",
+      "name": "Belgrave Interchange",
+      "deprivation_score": 0.62,
+      "imd_rank": 1500,
+      "lsoa": "E01009097",
+      "deprivation_band": "medium",
+      "fixed_coverage": true,
+      "postcode_area": "B12 0JP",
+      "notes": "Southern Inner Circle interchange"
+    },
+    {
+      "stop_id": "S07",
+      "name": "Five Ways Station",
+      "deprivation_score": 0.54,
+      "imd_rank": 3200,
+      "lsoa": "E01009111",
+      "deprivation_band": "medium",
+      "fixed_coverage": true,
+      "postcode_area": "B15 1BQ",
+      "notes": "Ring Road interchange; 3 routes converge; B15 mixed deprivation"
+    },
+    {
+      "stop_id": "S03",
+      "name": "Jewellery Quarter Stn",
+      "deprivation_score": 0.4,
+      "imd_rank": 5800,
+      "lsoa": "E01009158",
+      "deprivation_band": "low",
+      "fixed_coverage": true,
+      "postcode_area": "B18 6AJ",
+      "notes": "Rail + Metro interchange; partially gentrified"
+    },
+    {
+      "stop_id": "S11",
+      "name": "Edgbaston Village Metro",
+      "deprivation_score": 0.32,
+      "imd_rank": 8200,
+      "lsoa": "E01009063",
+      "deprivation_band": "low",
+      "fixed_coverage": true,
+      "postcode_area": "B15 2EX",
+      "notes": "Edgbaston; Metro interchange; route 126 toward Dudley"
+    },
+    {
+      "stop_id": "S05",
+      "name": "Five Ways (Metro)",
+      "deprivation_score": 0.28,
+      "imd_rank": 9600,
+      "lsoa": "E01009057",
+      "deprivation_band": "low",
+      "fixed_coverage": true,
+      "postcode_area": "B15 1AG",
+      "notes": "Metro stop; commuter interchange; lower deprivation area"
+    },
+    {
+      "stop_id": "S01",
+      "name": "New Street Station",
+      "deprivation_score": 0.18,
+      "imd_rank": 14000,
+      "lsoa": "E01013761",
+      "deprivation_band": "low",
+      "fixed_coverage": true,
+      "postcode_area": "B2 4QA",
+      "notes": "City centre main rail terminus; mixed deprivation due to proximity to wealth"
+    }
+  ],
+  "summary": {
+    "n_stops": 15,
+    "n_high_deprivation_stops": 8,
+    "n_high_dep_unserved_by_fixed": 0,
+    "high_dep_unserved_names": [],
+    "allocation_mismatch_fixed": 0.385,
+    "allocation_mismatch_dynamic": 0.374,
+    "mismatch_snapshots_compared": 32
+  },
+  "data_source": "MHCLG English Indices of Deprivation 2019 (IMD 2019), LSOA level",
+  "methodology": "IMD 2019 rank normalised to [0,1] deprivation score. Equity ratio = mean deprivation score of served stops / mean deprivation score of all stops. Allocation-mismatch index = sum(|service share - demand share|) / 2 across stops (the standard dissimilarity index, 0 = perfectly proportional, 1 = total mismatch), averaged across every scenario and time window in the live route plan \u2014 i.e. how closely bus allocation tracks demand as it shifts with weather and time of day."
+}
