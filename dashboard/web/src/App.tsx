@@ -165,7 +165,7 @@ function App() {
           <HeadlineStat value="57.9%" label="households with no car" />
           <HeadlineStat value="0.945" label="demand model R² (unseen 2024 data)" />
           <HeadlineStat value="263k" label="rows anchored to real ridership + weather" />
-          <HeadlineStat value="0.4%" label="optimiser gap vs. brute-force optimal" />
+          <HeadlineStat value="1.16%" label="optimiser gap vs. brute-force optimal" />
         </div>
       </motion.header>
 

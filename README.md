@@ -12,11 +12,11 @@
 ---
 
 <p align="center">
-  <img src="docs/figures/demo.gif" width="45%" />
+  <img src="docs/figures/dashboard_demo.gif" width="45%" />
   <img src="docs/figures/FPGA.gif" width="45%" />
 </p>
 <p align="center">
-  <em>Left: live web dashboard — ML-driven routing on real Ladywood roads &nbsp;|&nbsp; Right: FPGA LED network map</em>
+  <em>Left: the live web dashboard — ML-driven routing on real Ladywood roads &nbsp;|&nbsp; Right: the physical FPGA LED network map in action</em>
 </p>
 
 ---
@@ -52,9 +52,18 @@ Apple-Maps-at-night experience: a dark custom basemap, frosted-glass HUD panels,
 and Framer Motion micro-interactions throughout.
 
 <p align="center">
-  <img src="docs/figures/dashboard_stop_panel.png" width="32%" />
-  <img src="docs/figures/dashboard_imd_overlay.png" width="32%" />
-  <img src="docs/figures/dashboard_compare.png" width="32%" />
+  <img src="docs/figures/dashboard_demo.gif" width="80%" />
+</p>
+<p align="center">
+  <em>Live walkthrough — animated buses on real road geometry, click-a-stop detail panel, scenario comparison, and the IMD equity overlay</em>
+</p>
+
+<p align="center">
+  <img src="docs/figures/dashboard_stop_panel.png" width="49%" />
+  <img src="docs/figures/dashboard_imd_overlay.png" width="49%" />
+</p>
+<p align="center">
+  <img src="docs/figures/dashboard_compare.png" width="49%" />
 </p>
 <p align="center">
   <em>Click-a-stop detail panel · IMD equity overlay · live scenario comparison</em>
