@@ -6,7 +6,7 @@
 
 The current FPGA LED map (see [`fpga/`](../fpga/)) animates buses and demand patterns from **pre-baked ROM tables** generated once from `route_plan.json`. It looks great as a community-facing demo, but it has no live data link — it can't reflect a route that has just been re-optimised in response to changing conditions (weather, an event, a service disruption). This report sketches how a real deployment would close that gap: a central hub broadcasting live route/demand updates by radio to small, low-power receiver units mounted at each bus stop.
 
-![Suggested image 1 — a UK bus stop / shelter with a small electronics enclosure mounted on the post, to set the scene for "what are we retrofitting?"](images/01-bus-stop-context.jpg)
+![A UK bus shelter — the kind of structure a LoRa receiver and LED display unit would be retrofitted onto](images/01-bus-stop-context.jpg)
 
 ## 2. Why radio, and why LoRa specifically
 
@@ -20,7 +20,7 @@ Three signalling options were considered:
 
 LoRa (Long Range radio, e.g. the Semtech SX1278 chipset) trades data rate for range and power efficiency — it's slow (kilobits per second) and high-latency, which usually rules it out for real-time telemetry. **That trade-off doesn't matter here**: route/demand data updates on the scale of minutes to hours (per scenario/time-window), not milliseconds. A tiny periodic packet — "stop S04: demand=high, next bus ETA=4 min, route colour=amber" — is exactly the payload LoRa was designed to carry.
 
-![Suggested image 2 — a labelled photo or diagram of a small SX1278/Ra-01 LoRa module (the kind that plugs into a breadboard/microcontroller via UART), to show the actual hardware involved](images/02-lora-module.jpg)
+![A small SX1278/Ra-01-class LoRa module — the kind of UART-connected radio hardware proposed for both the hub transmitter and stop-unit receivers](images/02-lora-module.jpg)
 
 ## 3. Proposed architecture
 
@@ -30,13 +30,13 @@ LoRa (Long Range radio, e.g. the Semtech SX1278 chipset) trades data rate for ra
 - **Stop unit**: a small low-power receiver (LoRa module + microcontroller, or feeding straight into the FPGA's UART pins) decodes the packet and updates the LED display accordingly — no change needed to the WS2812B driving logic already proven in `fpga/bus_route.v`, just a new data source replacing the static ROM lookup.
 - **Mesh option**: modules such as the DFRobot LoRa MESH variant can relay packets stop-to-stop, extending the hub's effective reach past line-of-sight without extra infrastructure — useful in a built-up area like Ladywood where buildings would otherwise block a direct hub→stop link.
 
-![Suggested image 3 — a simple network/coverage map graphic (e.g. a stylised map with a central "hub" icon and radiating circles/dots representing stop receivers within range — could be a generic LoRa mesh network diagram from a vendor's site, or a UK street map with overlay), illustrating "one hub, many stops, radio coverage"](images/03-coverage-diagram.jpg)
+![A LoRa mesh-network coverage diagram — a central hub broadcasting to, and relaying through, multiple stop receivers across an area, illustrating the "one hub, many stops" coverage model described above](images/03-coverage-diagram.jpg)
 
 ## 4. Power and practicality
 
 A genuine strength of this approach: **no mains wiring required at each stop**. SX1278-class modules draw very little current, run off 1.8–3.6 V, and pair naturally with a small battery + solar trickle-charge — the kind of self-contained unit that could realistically be retrofitted onto an existing bus-stop post without civil works.
 
-![Suggested image 4 — a small solar-panel + battery + enclosure setup (the kind used for solar bus-stop lighting or roadside sensors), to illustrate the self-contained power concept](images/04-solar-power-unit.jpg)
+![A small solar-panel-and-battery enclosure of the kind used for solar bus-stop lighting and roadside sensors — illustrating the self-contained, mains-free power concept described above](images/04-solar-power-unit.jpg)
 
 ## 5. What this would change for the FPGA design
 
@@ -52,15 +52,3 @@ Critically, **this requires no rework of the WS2812B driving logic** already bui
 
 A small bench prototype: one LoRa transmitter on a Raspberry Pi (standing in for the hub backend) broadcasting a mock "stop demand" packet, and one receiver feeding a microcontroller driving a handful of WS2812B LEDs (standing in for a stop unit). This would prove the data path end-to-end before any integration with the full FPGA design — and would make for a compelling "here's the live version, in progress" demo addition alongside the existing static FPGA display.
 
----
-
-### Image list (for you to source and drop into `images/`)
-
-| # | Filename used above | What to look for |
-|---|---|---|
-| 1 | `01-bus-stop-context.jpg` | Photo of a UK-style bus stop/shelter — sets the scene |
-| 2 | `02-lora-module.jpg` | Product photo of an SX1278 / Ra-01 LoRa module (search "SX1278 Ra-01 LoRa module 433MHz") |
-| 3 | `03-coverage-diagram.jpg` | A LoRa/mesh network coverage diagram (search "LoRa mesh network diagram" — vendor sites like DFRobot/Quectel often have clean ones) or a simple hub-and-spoke map graphic |
-| 4 | `04-solar-power-unit.jpg` | Photo of a solar-powered roadside sensor/bus-stop lighting unit (search "solar powered bus stop sensor") |
-
-Use royalty-free sources (vendor product pages, Wikimedia Commons, Unsplash/Pexels) and keep attribution notes if the licence requires it.
