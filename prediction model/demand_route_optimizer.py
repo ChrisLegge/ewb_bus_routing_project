@@ -24,7 +24,6 @@ import pandas as pd
 import networkx as nx
 from xgboost import XGBRegressor
 from sklearn.preprocessing import LabelEncoder
-from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -118,8 +117,19 @@ FEATURE_COLS = (
 X = df[FEATURE_COLS].values
 y = df["boardings"].values
 
-X_train, X_test, y_train, y_test = train_test_split(
-    X, y, test_size=0.20, random_state=42)
+# Temporal split: train on 2023, test on 2024 — a model that only ever sees
+# random-shuffled rows can "cheat" by memorising a stop's hourly pattern from
+# a row an hour away in the test set. Splitting on real calendar dates means
+# the test year is genuinely unseen, which is the honest test of whether the
+# model generalises across time (reviewer 2a: sampling/independence concerns).
+df["date"] = pd.to_datetime(df["date"])
+train_mask = df["date"].dt.year == 2023
+test_mask  = df["date"].dt.year == 2024
+
+X_train, y_train = X[train_mask.values], y[train_mask.values]
+X_test,  y_test  = X[test_mask.values],  y[test_mask.values]
+print(f"\nTemporal split: train on 2023 ({len(X_train):,} rows), "
+      f"test on 2024 ({len(X_test):,} rows)")
 
 # ─────────────────────────────────────────────────────────────────────────────
 # 4.  TRAIN XGBOOST MODEL
