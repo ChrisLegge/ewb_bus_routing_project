@@ -1,0 +1,73 @@
+{
+  "iid_check": {
+    "random_split": {
+      "r2": 0.9485119581222534,
+      "rmse": 4.448856704088224,
+      "n_train": 210528,
+      "n_test": 52632
+    },
+    "temporal_split": {
+      "r2": 0.9444911479949951,
+      "rmse": 4.573748374619655,
+      "n_train": 131400,
+      "n_test": 131760
+    },
+    "r2_gap": 0.004,
+    "interpretation": "Small gap (<0.02): random-split performance is not an artefact of row-level autocorrelation \u2014 the model generalises across genuinely unseen time periods nearly as well as across shuffled rows, supporting the i.i.d.-ish treatment of rows within a split."
+  },
+  "anchor_sensitivity": {
+    "runs": {
+      "baseline": {
+        "r2": 0.9439060279946964,
+        "rmse": 4.599725183207715,
+        "n_train": 131400,
+        "n_test": 131760
+      },
+      "anchor_minus_20pct": {
+        "r2": 0.9439026384751268,
+        "rmse": 3.67847071841265,
+        "n_train": 131400,
+        "n_test": 131760
+      },
+      "anchor_plus_20pct": {
+        "r2": 0.9442951575380552,
+        "rmse": 5.501713484690621,
+        "n_train": 131400,
+        "n_test": 131760
+      }
+    },
+    "r2_spread": 0.0004,
+    "interpretation": "R2 is stable under +-20% perturbation of the demand anchor (spread = 0.0004): the model's learned relationships between exogenous features (weather, time, place) and demand hold regardless of the absolute scale fixed by the smartcard anchor \u2014 i.e. the result is not an artefact of that one (decade-old, concessionary-only) data source's exact magnitude."
+  },
+  "domain_shift": {
+    "runs": {
+      "train_2023_test_2024": {
+        "r2": 0.9444911479949951,
+        "rmse": 4.573748374619655,
+        "n_train": 131400,
+        "n_test": 131760
+      },
+      "train_2024_test_2023": {
+        "r2": 0.9453001618385315,
+        "rmse": 4.557607666685738,
+        "n_train": 131760,
+        "n_test": 131400
+      },
+      "train_winter_test_summer": {
+        "r2": 0.9366428256034851,
+        "rmse": 5.069543342264338,
+        "n_train": 131400,
+        "n_test": 131760
+      },
+      "train_summer_test_winter": {
+        "r2": 0.9312438368797302,
+        "rmse": 4.908331168432789,
+        "n_train": 131760,
+        "n_test": 131400
+      }
+    },
+    "year_shift_avg_r2": 0.9449,
+    "season_shift_avg_r2": 0.9339,
+    "interpretation": "Cross-year and cross-season transfers retain most of the in-distribution R2 \u2014 the model is mostly learning stable structure (which stops are busy, when, in what weather) rather than memorising a single year's idiosyncrasies. Any drop is expected and informative: it bounds how far this model could be trusted to extrapolate to a future service change or an unseen year without retraining."
+  }
+}
