@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import MapView from "./MapView";
-import { fetchScenarios, fetchRoutes, type RouteInfo } from "./api";
+import StopPanel from "./StopPanel";
+import { fetchScenarios, fetchRoutes, fetchDemand, type RouteInfo, type Stop } from "./api";
 import "./app.css";
 
 const WINDOWS = [
@@ -20,6 +21,10 @@ function App() {
   const [scenario, setScenario] = useState<string>("");
   const [windowIdx, setWindowIdx] = useState(1); // AM Peak default
   const [routes, setRoutes] = useState<RouteInfo[]>([]);
+  const [selectedStop, setSelectedStop] = useState<Stop | null>(null);
+  const [demand, setDemand] = useState<Record<string, number>>({});
+  const [imdOverlay, setImdOverlay] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const win = WINDOWS[windowIdx];
 
@@ -32,12 +37,39 @@ function App() {
 
   useEffect(() => {
     if (!scenario) return;
-    fetchRoutes(scenario, win.label).then((r) => setRoutes(r.routes ?? []));
+    setLoading(true);
+    fetchRoutes(scenario, win.label)
+      .then((r) => setRoutes(r.routes ?? []))
+      .finally(() => setLoading(false));
   }, [scenario, win.label]);
+
+  useEffect(() => {
+    fetchDemand(win.hour).then((d) => setDemand(d.predictions));
+  }, [win.hour]);
 
   return (
     <div className="app-shell">
-      <MapView hour={win.hour} routes={routes} />
+      <MapView hour={win.hour} routes={routes} onSelectStop={setSelectedStop} imdOverlay={imdOverlay} />
+
+      <AnimatePresence>
+        {loading && (
+          <motion.div
+            className="loading-veil"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <span className="loading-pulse" />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <StopPanel
+        stop={selectedStop}
+        boardings={selectedStop ? demand[selectedStop.stop_id] ?? 0 : 0}
+        onClose={() => setSelectedStop(null)}
+      />
 
       <motion.header
         className="hud hud-top"
@@ -93,11 +125,25 @@ function App() {
           className="time-slider"
         />
         <div className="legend">
-          <span className="legend-dot major" /> Major
-          <span className="legend-dot medium" /> Medium
-          <span className="legend-dot minor" /> Minor
+          {imdOverlay ? (
+            <>
+              <span className="legend-dot imd-low" /> Less deprived
+              <span className="legend-dot imd-high" /> More deprived
+            </>
+          ) : (
+            <>
+              <span className="legend-dot major" /> Major
+              <span className="legend-dot medium" /> Medium
+              <span className="legend-dot minor" /> Minor
+            </>
+          )}
           <span className="legend-spacer" />
-          <span className="legend-hint">Dot size = predicted boardings · lines = live routes</span>
+          <button
+            className={`overlay-toggle${imdOverlay ? " active" : ""}`}
+            onClick={() => setImdOverlay((v) => !v)}
+          >
+            {imdOverlay ? "Showing IMD equity overlay" : "Show IMD equity overlay"}
+          </button>
         </div>
       </motion.div>
     </div>

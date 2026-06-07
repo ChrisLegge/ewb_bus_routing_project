@@ -59,7 +59,9 @@ def _load_static_lookup() -> dict[str, dict]:
     cols = [c for c in _STATIC_COLS if c in df.columns]
     if not cols:
         return {}
-    return df.drop_duplicates("stop_id").set_index("stop_id")[cols].to_dict("index")
+    raw = df.drop_duplicates("stop_id").set_index("stop_id")[cols].to_dict("index")
+    return {sid: {k: (None if pd.isna(v) else v) for k, v in row.items()}
+            for sid, row in raw.items()}
 
 
 _model, _encoders = _load_bundle()

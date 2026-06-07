@@ -20,7 +20,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from dashboard.ladywood_display import STOPS_DISPLAY
-from dashboard.demand import predict_all_stops
+from dashboard.demand import predict_all_stops, _static_lookup
 
 _REPO_ROOT = Path(__file__).parent.parent
 _ROAD_PATHS = _REPO_ROOT / "data" / "gtfs" / "road_paths.json"
@@ -66,7 +66,7 @@ def _route_geometry(route_stops: list[str]) -> list[list[float]]:
 def get_stops():
     """The 15 model stops — id, name, coordinates, routes, importance tier."""
     return [
-        {"stop_id": sid, **info}
+        {"stop_id": sid, **info, **_static_lookup.get(sid, {})}
         for sid, info in STOPS_DISPLAY.items()
     ]
 

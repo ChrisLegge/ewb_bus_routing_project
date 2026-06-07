@@ -19,7 +19,17 @@ function radiusForDemand(boardings: number): number {
   return 6 + Math.sqrt(Math.max(boardings, 0)) * 1.6;
 }
 
-export default function MapView({ hour, routes }: { hour: number; routes: RouteInfo[] }) {
+export default function MapView({
+  hour,
+  routes,
+  onSelectStop,
+  imdOverlay,
+}: {
+  hour: number;
+  routes: RouteInfo[];
+  onSelectStop: (stop: Stop) => void;
+  imdOverlay: boolean;
+}) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<MlMap | null>(null);
   const markersRef = useRef<Record<string, { marker: Marker; el: HTMLDivElement }>>({});
@@ -79,16 +89,32 @@ export default function MapView({ hour, routes }: { hour: number; routes: RouteI
           .setLngLat([stop.lng, stop.lat])
           .setPopup(popup)
           .addTo(map);
+        el.addEventListener("click", (e) => {
+          e.stopPropagation();
+          onSelectStop(stop);
+        });
         entry = { marker, el };
         markersRef.current[stop.stop_id] = entry;
       }
 
       entry.el.style.width = `${r * 2}px`;
       entry.el.style.height = `${r * 2}px`;
-      entry.el.style.background = IMPORTANCE_COLOR[stop.importance] ?? "#8e8e93";
       entry.el.title = `${stop.name} — ${boardings.toFixed(0)} boardings`;
+
+      if (imdOverlay && stop.imd_score != null) {
+        // Deprivation overlay: redder = more deprived (higher IMD score)
+        const t = Math.max(0, Math.min(1, stop.imd_score / 60));
+        const r0 = 142, g0 = 142, b0 = 147; // grey baseline
+        const r1 = 255, g1 = 55, b1 = 95;   // alert red (#ff375f)
+        const mix = (a: number, b: number) => Math.round(a + (b - a) * t);
+        entry.el.style.background = `rgb(${mix(r0, r1)}, ${mix(g0, g1)}, ${mix(b0, b1)})`;
+        entry.el.style.boxShadow = `0 0 0 4px rgba(255, 55, 95, ${0.05 + t * 0.18})`;
+      } else {
+        entry.el.style.background = IMPORTANCE_COLOR[stop.importance] ?? "#8e8e93";
+        entry.el.style.boxShadow = "0 0 0 4px rgba(255, 255, 255, 0.06)";
+      }
     }
-  }, [stops, demand]);
+  }, [stops, demand, imdOverlay, onSelectStop]);
 
   return (
     <>
