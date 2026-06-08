@@ -22,7 +22,7 @@ Methodology
   The baseline (fixed schedule) runs 3 vehicles on the 8A/8C, Route 80, and
   Route 126 corridors. Route lengths are approximated from real TfWM GTFS stop
   sequences. Dynamic routing is modelled as a reduction in total vehicle-km via
-  the 2-opt optimiser (mean gap 0.4% from optimal; empirically ~11–14% fewer
+  the 2-opt optimiser (mean gap 1.16% from optimal; empirically ~11–14% fewer
   vehicle-km than the fixed timetable on the same corridors).
 
   Social value of passenger-time savings is computed using DfT TAG methodology:
