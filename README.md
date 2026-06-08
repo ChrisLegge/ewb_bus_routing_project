@@ -16,8 +16,7 @@
   <img src="docs/figures/FPGA.gif" width="45%" />
 </p>
 <p align="center">
-  <em>Left: the live dashboard — animated demand and routes on the real Ladywood map (MapLibre).
-  Right: the same demand-and-route pattern reproduced on the physical FPGA LED network map (`fpga/bus_route.v`).</em>
+  <em>Left: live web dashboard — ML-driven routing on real Ladywood roads &nbsp;|&nbsp; Right: FPGA LED network map</em>
 </p>
 
 ---
