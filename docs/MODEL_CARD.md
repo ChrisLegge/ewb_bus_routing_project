@@ -99,6 +99,94 @@ to closing this gap is a direct TfWM Automatic Passenger Counting (APC) data
 request or a manual stop-level traffic survey** — see
 [Caveats](../README.md#caveats) for the full discussion of next steps.
 
+## Statistical assumptions, and what would break them
+
+The robustness checks above test whether the *headline number* survives
+reasonable stress — they don't, by themselves, name the *assumptions* the
+whole modelling approach rests on. A reviewer specifically asked us to do
+that: name the assumptions, and say how robust we are to their violation.
+Here is that discussion, done properly rather than gestured at.
+
+**The core assumption.** Like all standard supervised learning (XGBoost
+included), this model is fit by empirical risk minimisation, which formally
+assumes training rows are **independent and identically distributed (i.i.d.)**
+— that no row's value can be predicted from another's, and that every row is
+drawn from the same underlying generative process as the rows the model will
+later be asked to score
+([overview of i.i.d. assumptions in CV](https://towardsdatascience.com/4-things-to-do-when-applying-cross-validation-with-time-series-c6a5674ebf3a/)).
+Transit data violates both halves of this by construction:
+
+- **Independence**: demand at the same stop an hour apart is highly
+  autocorrelated, and demand at neighbouring stops is correlated by
+  Tobler's First Law of Geography — "near things are more related than
+  distant things"
+  ([geographyrealm.com](https://www.geographyrealm.com/toblers-first-law-geography/)).
+  Naively shuffled cross-validation on data like this leaks information from
+  "the future" or "the next stop over" into training, producing
+  **optimistically biased validation scores** — a well-documented failure
+  mode ([Roberts et al. 2017, *Ecography*](https://www.wsl.ch/lud/biodiversity_events/papers/Roberts_et_al-2017-Ecography.pdf);
+  [scikit-learn's own caution on this](https://scikit-learn.org/stable/modules/cross_validation.html)).
+  **This is precisely why we report the temporal split (train 2023 → test
+  unseen 2024) as the primary number, not the random 80/20 split** — the
+  0.004 gap between them (0.945 vs. 0.949) is our direct, quantified evidence
+  that row-level leakage is *not* meaningfully inflating our headline figure.
+- **Representativeness**: the model can only be expected to generalise to
+  conditions resembling those in its training window (2023–24 weather, the
+  current route network, the current built environment). Gradient-boosted
+  trees predict via piecewise-constant leaf averages and **structurally
+  cannot extrapolate beyond the range of values seen in training**
+  ([machinelearningmastery.com](https://machinelearningmastery.com/xgboost-for-time-series-forecasting/))
+  — any future combination of conditions outside that range (a heatwave
+  beyond anything in the 2023–24 archive, a new tram line, a major
+  regeneration scheme reshaping the IMD profile) is something this model is
+  guaranteed to handle by *flattening toward its nearest seen analogue*, not
+  by reasoning correctly about the new regime.
+
+**What "the model fails under structural problems" actually means, with a
+real number attached.** The textbook term is a **structural break** — an
+abrupt shift in the underlying data-generating process
+([Wikipedia, Structural break](https://en.wikipedia.org/wiki/Structural_break)).
+The canonical real-world transit example is COVID-19: a peer-reviewed 2024
+study found the pandemic "introduced substantial changes in transit ridership
+levels and seasonal patterns" that materially degraded forecasting model
+performance
+([Springer, *Public Transport*, 2024](https://link.springer.com/article/10.1007/s12469-024-00368-5)).
+For a sense of *magnitude* — not from transit, but the same mechanism
+(a sudden shift in both the inputs' distribution and the input→output
+relationship) — Instacart's grocery-availability forecasting accuracy fell
+from **93% to 61%** when COVID abruptly changed shopping behaviour
+([aerospike.com](https://aerospike.com/blog/model-drift-machine-learning/)).
+We cite that figure explicitly as a **cross-domain illustrative analogy**, not
+a transit-specific result — but it puts a real number on what "fails under
+structural change" can mean for a model of this class, and it is the right
+order of magnitude to take seriously: our 0.945 could plausibly become
+something closer to Instacart's 61% under an equivalent shock, not just dip a
+few points the way our season-shift check (0.934) suggests for *ordinary*
+seasonal variation.
+
+**What we would do about it — concrete next steps, not just acknowledgement.**
+Two established techniques would let us *measure* rather than guess at this:
+
+1. **Conformalised Quantile Regression (CQR)** — produces prediction
+   intervals with a *distribution-free, guaranteed coverage probability*,
+   meaning the uncertainty estimate itself stays valid even when the
+   underlying distributional assumptions break
+   ([Manokhin, on CQR](https://valeman.medium.com/conformalized-quantile-regression-smarter-uncertainty-prediction-for-data-scientists-6389bea7a7c4);
+   [Boosted Conformal Prediction Intervals, arXiv:2406.07449](https://arxiv.org/html/2406.07449)).
+   Adding this would turn "the model says 40 boardings" into "the model says
+   40, with 90% confidence the true value is between 28 and 55" — and that
+   interval would visibly widen exactly when the model is being asked to
+   predict outside its evidentiary basis.
+2. **Out-of-distribution flagging at inference time** — checking whether a
+   requested combination of conditions (hour, weather, event type, term
+   status) falls inside the convex hull of the training data, and surfacing
+   that to the dashboard's "what-if" panel rather than silently returning a
+   point estimate the model has no real basis for.
+
+Both are concrete, scoped engineering tasks we can point to as the genuine
+next phase of this work — converting "we know this could fail" into "here is
+how we would know *when* it has."
+
 ## Ethical considerations
 
 - The demand anchor (UCL/GEoDS smartcard data) is **concessionary-only**
