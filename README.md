@@ -16,7 +16,7 @@
   <img src="docs/figures/FPGA.gif" width="45%" />
 </p>
 <p align="center">
-  <em>Left: live web dashboard — ML-driven routing on real Ladywood roads &nbsp;|&nbsp; Right: FPGA LED network map</em>
+  <em>Left: physical FPGA LED network map — animated demand and route display on real hardware &nbsp;|&nbsp; Right: FPGA development board (`fpga/bus_route.v`)</em>
 </p>
 
 ---
