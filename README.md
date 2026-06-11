@@ -303,14 +303,31 @@ The remaining path to fully-observed accuracy: a direct TfWM Automatic Passenger
 
 ## Docs
 
-- [Architecture](docs/ARCHITECTURE.md)
-- [Model Card](docs/MODEL_CARD.md)
-- [Why XGBoost — model technique comparison](docs/design/MODEL_COMPARISON.md)
+### Context & consequences — people, planet, economy
+
+- [Unintended Consequences Register](docs/UNINTENDED_CONSEQUENCES.md) — 11 mechanisms across community/environment/economy, each with an evidence-based mitigation
+- [Demographic → Design Map](docs/DEMOGRAPHIC_DESIGN_MAP.md) — which real group, of what size, is served by which specific design feature
+- [Emissions Quantification](docs/EMISSIONS_QUANTIFICATION.md) — the CO₂e/NOₓ numbers behind the vehicle-km reduction, quoted as honest ranges
+- [Display Comprehension Test Protocol](docs/DISPLAY_COMPREHENSION_PROTOCOL.md) — pre-registered usability study of the LED map with the groups it claims to serve
+- [Equity effect size, in human units](docs/EFFECT_SIZE_TRANSLATION.md) — what the dissimilarity-index gain means in daily bus arrivals
 - [Economic model methodology](docs/design/RUNNING_COSTS.md)
 - [End-of-life & e-waste strategy](docs/design/END_OF_LIFE.md)
-- [Comparative landscape — Singapore, London, and informal-transit systems](docs/design/COMPARATIVE_LANDSCAPE.md)
 - [Stakeholder engagement design](docs/design/STAKEHOLDER_ENGAGEMENT.md)
+
+### Design justification & implementation
+
+- [Architecture](docs/ARCHITECTURE.md)
+- [Model Card](docs/MODEL_CARD.md)
+- [Assumption Log](docs/ASSUMPTION_LOG.md) — every load-bearing assumption: where it enters the code, its status (VERIFIED / BOUNDED / OPEN), impact if wrong, revisit trigger
+- [Demand-shape validation vs TfL BUSTO](analysis/shape_validation/SHAPE_VALIDATION.md) — modelled curves tested against 2.3M observed boardings (weekday r = 0.94–0.95; weekend honestly weaker and logged as open)
+- [Crime-feature ablation](analysis/crime_ablation/CRIME_ABLATION.md) — tested, carried no signal, recommended for removal
+- [Why XGBoost — model technique comparison](docs/design/MODEL_COMPARISON.md)
+- [Driver interface & lawful rollout pathway](docs/DRIVER_INTERFACE.md) — how a driver actually receives a route, and the three-phase route through bus-registration law
+- [Failure modes, safe defaults & the service floor](docs/FAILURE_MODES_AND_SERVICE_FLOOR.md) — every failure path terminates in the status quo
+- [Comparative landscape — Singapore, London, and informal-transit systems](docs/design/COMPARATIVE_LANDSCAPE.md)
 - [User journeys](docs/design/USER_JOURNEYS.md)
 - [Scalability](docs/design/SCALABILITY.md)
 - [Radio signalling architecture (LoRa)](docs/radio_signalling_report.md)
+- [FPGA & display hardening](docs/FPGA_HARDENING.md) — LoRa packet authentication, outdoor-rating, HDL verification
+- [Proposed live stop-unit architecture (render)](docs/renders/stop_unit_isometric.png)
 - [Dashboard README](dashboard/README.md)
