@@ -49,3 +49,7 @@ simulation/Temp/
 simulation/Obj/
 simulation/Logs/
 simulation/UserSettings/
+
+# BODS live-data collection (key is personal; raw AVL regenerable)
+.bods_key
+tools/bods_avl/avl_raw/
