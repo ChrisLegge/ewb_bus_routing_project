@@ -63,6 +63,39 @@ function timeAtmosphere(hour: number): { wash: string; washOp: number; darken: n
   return { wash: `rgb(${best.c[0]}, ${best.c[1]}, ${best.c[2]})`, washOp: best.o, darken: best.d };
 }
 
+// Lift the city into 3D — extrude OSM building footprints (the CARTO basemap's
+// `carto`/`building` source carries render_height). Subtle, dark, catches the
+// dusk tint. Appears as you lean in past ~z13.5; the overview stays a clean map.
+function add3DBuildings(map: MlMap) {
+  if (map.getLayer("ladywood-3d-buildings")) return;
+  const firstSymbol = map.getStyle().layers?.find((l) => l.type === "symbol")?.id;
+  map.addLayer(
+    {
+      id: "ladywood-3d-buildings",
+      type: "fill-extrusion",
+      source: "carto",
+      "source-layer": "building",
+      minzoom: 13.5,
+      paint: {
+        "fill-extrusion-color": [
+          "interpolate", ["linear"], ["coalesce", ["get", "render_height"], 6],
+          0, "#1b1e26",
+          40, "#2b3140",
+          120, "#3a4252",
+        ],
+        "fill-extrusion-height": [
+          "interpolate", ["linear"], ["zoom"],
+          13.5, 0,
+          14.5, ["coalesce", ["get", "render_height"], 6],
+        ],
+        "fill-extrusion-base": ["coalesce", ["get", "render_min_height"], 0],
+        "fill-extrusion-opacity": 0.85,
+      },
+    },
+    firstSymbol,
+  );
+}
+
 export default function MapView({
   routes,
   demand,
@@ -94,6 +127,7 @@ export default function MapView({
       attributionControl: { compact: true },
     });
     map.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-right");
+    map.on("load", () => add3DBuildings(map));
     mapRef.current = map;
     setMapInstance(map);
     return () => {
