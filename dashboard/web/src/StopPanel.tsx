@@ -3,11 +3,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import type { Stop } from "./api";
 
 const METRIC_DEFS: { label: string; def: string }[] = [
-  { label: "IMD score", def: "Index of Multiple Deprivation (2019) for the stop's Lower Super Output Area — higher means more deprived. England's official measure of relative deprivation, combining income, employment, health, education, crime, housing, and environment." },
-  { label: "Points of interest", def: "Count of nearby amenities (shops, services, civic buildings) from OpenStreetMap — a proxy for footfall and local activity around the stop." },
-  { label: "Population", def: "Estimated resident population in the stop's surrounding LSOA (ONS Census-derived), indicating the size of the community the stop serves." },
-  { label: "Crime (2024)", def: "Total recorded crime incidents in the stop's local area for 2024 (police.uk data) — higher values may indicate need for safer, more frequent service in the evenings." },
-  { label: "Elevation", def: "Height above sea level in metres — included as a feature because hills affect walking distance to stops and journey times." },
+  { label: "Predicted boardings", def: "The demand model's estimate of how many passengers board here during the selected 2-hour window, under the chosen day / weather / event. This is the one live, model-driven number — it changes as you scrub the time of day (roughly 0 overnight up to ~200 at a busy stop in peak). The five below are fixed stop attributes." },
+  { label: "IMD score", def: "Index of Multiple Deprivation (2019) for the stop's Lower Super Output Area — England's official measure of relative deprivation (income, employment, health, education, crime, housing, environment). The score runs ~0 (least deprived) to ~90 (most); higher = more deprived. Ladywood's stops sit between 27 and 68 — most in England's more-deprived half." },
+  { label: "Points of interest", def: "Count of amenities (shops, services, civic buildings) within 400 m, from OpenStreetMap — a proxy for footfall and local activity. Across these stops it ranges from ~10 (quiet residential) to ~190 (a busy interchange). A dash (—) means OpenStreetMap returned no data for that stop, not zero amenities." },
+  { label: "Population", def: "Resident population of the stop's surrounding Census area (an LSOA, designed to hold ~1,500–3,000 people). Here it ranges ~1,450–2,500 — the size of the immediate community the stop serves." },
+  { label: "Crime (2024)", def: "Recorded crime incidents for 2024 (police.uk) across the stop's wider policing neighbourhood — which is why the figures run into the tens of thousands and are shared between nearby stops, rather than a single street's count. Used cautiously (see the crime-feature ablation): higher may indicate need for safer, more frequent evening service." },
+  { label: "Elevation", def: "Height above sea level in metres (here 123–149 m — a modest spread). Included because hills affect walking distance to stops and journey times." },
 ];
 
 function Stat({ label, value }: { label: string; value: string }) {
@@ -21,6 +22,11 @@ function Stat({ label, value }: { label: string; value: string }) {
 
 const fmt = (v: number | null | undefined, digits = 0) =>
   v === null || v === undefined ? "—" : v.toFixed(digits);
+
+// POI counts use -1 per category as an "OSM returned no data" sentinel, which
+// can sum to a negative total — show those as unavailable, not a real count.
+const fmtCount = (v: number | null | undefined) =>
+  v === null || v === undefined || v < 0 ? "—" : v.toFixed(0);
 
 export default function StopPanel({
   stop,
@@ -54,7 +60,7 @@ export default function StopPanel({
           <div className="stat-grid">
             <Stat label="Predicted boardings" value={fmt(boardings)} />
             <Stat label="IMD score" value={fmt(stop.imd_score, 1)} />
-            <Stat label="Points of interest" value={fmt(stop.poi_total)} />
+            <Stat label="Points of interest" value={fmtCount(stop.poi_total)} />
             <Stat label="Population" value={fmt(stop.population)} />
             <Stat label="Crime (2024)" value={fmt(stop.crime_total_2024)} />
             <Stat label="Elevation" value={stop.elevation_m == null ? "—" : `${fmt(stop.elevation_m)} m`} />
