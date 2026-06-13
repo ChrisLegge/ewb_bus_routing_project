@@ -194,10 +194,52 @@
 .legend-dot.medium { background: #5ac8fa; }
 .legend-dot.minor { background: #8e8e93; }
 
+/* Demand heat gradient swatch — the primary key now */
+.legend-grad {
+  display: inline-block;
+  width: 46px;
+  height: 9px;
+  border-radius: 5px;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+.legend-grad.demand {
+  background: linear-gradient(90deg, #2e6e8c 0%, #e0a028 55%, #dc2626 100%);
+}
+.legend-sep {
+  display: inline-block;
+  width: 1px;
+  height: 11px;
+  background: rgba(255, 255, 255, 0.18);
+  margin: 0 10px;
+  vertical-align: middle;
+}
+.legend-ring {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
 .legend-spacer { flex: 1; }
 .legend-hint { font-style: italic; }
 
+/* Zero-size anchor: MapLibre pins this exact point to the coordinate. */
+.stop-anchor {
+  width: 0;
+  height: 0;
+}
+
 .stop-dot {
+  position: absolute;
+  left: 0;
+  top: 0;
+  /* centre the dot on the anchor point; all hover states keep this offset */
+  transform: translate(-50%, -50%);
   border-radius: 50%;
   border: 1.5px solid rgba(255, 255, 255, 0.85);
   box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.06);
@@ -210,11 +252,79 @@
 }
 
 .stop-dot:hover {
-  transform: scale(1.18);
+  transform: translate(-50%, -50%) scale(1.18);
 }
 
 .stop-dot:active {
-  transform: scale(0.95);
+  transform: translate(-50%, -50%) scale(0.95);
+}
+
+/* Breathing demand pulse — a radar ring whose colour and amplitude track the
+   model's predicted demand at the current window. Quiet stops barely move;
+   busy stops pulse warm and wide. This is the demand made visible. */
+.stop-dot .pulse-ring {
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--glow, #0e7c7b) 0%, transparent 70%);
+  opacity: 0;
+  pointer-events: none;
+  animation: demand-pulse 2.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  z-index: -1;
+}
+
+@keyframes demand-pulse {
+  0%   { transform: scale(1);                                       opacity: calc(var(--glow-op, 0) * 0.9); }
+  70%  { transform: scale(calc(1 + var(--glow-scale, 0.6)));        opacity: 0; }
+  100% { transform: scale(calc(1 + var(--glow-scale, 0.6)));        opacity: 0; }
+}
+
+/* Stop labels — readable name beside each dot, with a dark halo so they sit
+   above the basemap. Majors + the hero are always on; medium/minor reveal on
+   hover to keep the map calm. */
+.stop-label {
+  position: absolute;
+  left: calc(100% + 6px);
+  top: 50%;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.92);
+  text-shadow: 0 0 4px #000, 0 1px 3px rgba(0, 0, 0, 0.9);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+.stop-dot.tier-major .stop-label { opacity: 0.95; }
+.stop-dot:hover .stop-label { opacity: 1; }
+
+/* The hero stop — City Hospital. A standing teal ring + a two-line caption so
+   it can be pointed to on stage: "that one — the hospital." */
+.stop-dot.hero {
+  border-color: #5ac8fa;
+  box-shadow: 0 0 0 3px rgba(90, 200, 250, 0.35),
+              0 0 18px 4px rgba(90, 200, 250, 0.45);
+}
+.stop-dot.hero .stop-label {
+  opacity: 1;
+  font-size: 12px;
+  color: #fff;
+  /* sit below the dot, centred — clear of the route lines to its side */
+  left: 50%;
+  right: auto;
+  top: calc(100% + 7px);
+  transform: translateX(-50%);
+  text-align: center;
+}
+.stop-dot.hero .stop-label em {
+  display: block;
+  font-style: normal;
+  font-size: 10px;
+  font-weight: 500;
+  color: #5ac8fa;
+  letter-spacing: 0.04em;
 }
 
 .bus-marker {

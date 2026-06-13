@@ -232,9 +232,9 @@ function App() {
             </>
           ) : (
             <>
-              <span className="legend-dot major" /> Major
-              <span className="legend-dot medium" /> Medium
-              <span className="legend-dot minor" /> Minor
+              <span className="legend-grad demand" /> Quiet → busy
+              <span className="legend-sep" />
+              <span className="legend-ring" /> Ring = stop importance
             </>
           )}
           <span className="legend-spacer" />

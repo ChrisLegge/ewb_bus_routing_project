@@ -51,6 +51,7 @@ export default function BusLayer({ map, routes }: { map: MlMap | null; routes: R
     const cleanupLines = () => {
       for (const r of routes) {
         const id = `${ROUTE_SOURCE_PREFIX}${r.bus}`;
+        if (map.getLayer(`${id}-case`)) map.removeLayer(`${id}-case`);
         if (map.getLayer(id)) map.removeLayer(id);
         if (map.getSource(id)) map.removeSource(id);
       }
@@ -66,10 +67,17 @@ export default function BusLayer({ map, routes }: { map: MlMap | null; routes: R
           type: "geojson",
           data: { type: "Feature", properties: {}, geometry: { type: "LineString", coordinates: r.geometry } },
         });
+        // Dark casing underneath keeps the route legible where it crosses
+        // light roads or the basemap's grey arterials.
+        map.addLayer({
+          id: `${id}-case`, type: "line", source: id,
+          layout: { "line-join": "round", "line-cap": "round" },
+          paint: { "line-color": "#0b0c10", "line-width": 7, "line-opacity": 0.7 },
+        });
         map.addLayer({
           id, type: "line", source: id,
           layout: { "line-join": "round", "line-cap": "round" },
-          paint: { "line-color": color, "line-width": 3, "line-opacity": 0.55 },
+          paint: { "line-color": color, "line-width": 3.6, "line-opacity": 0.92 },
         });
       });
     };
